@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Virtual Tour | Netify Living</title>
+  <!-- Google Fonts + simple reset & modern styling -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefefe;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* Unified navbar & footer background - dark blue */
+    .navbar, .footer {
+      background: #0a1927;
+      background: #0b2b3b;
+    }
+    .footer {
+      background: #0a1c2a;
+    }
+
+    /* brand container */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .brand img { 
+      width: 72px;
+      height: 72px;
+      object-fit: cover; 
+      border-radius: 14px;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: #fff;
+      transition: transform 0.2s ease;
+    }
+    .brand img:hover {
+      transform: scale(1.02);
+    }
+
+    .notify-live-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7ccf9c 0%, #2b7a4b 60%, #3f9c66 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+      padding-left: 6px;
+      border-left: 2.5px solid #7ccf9c;
+      margin-left: 4px;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .notify-live-text i {
+      font-size: 0.9rem;
+      color: #7ccf9c;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #7ccf9c;
+      margin-right: 5px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #eef2f5;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #7ccf9c;
+    }
+
+    .signin-btn {
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c !important;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .signin-btn:hover {
+      background: #2b7a4b;
+      border-color: #2b7a4b;
+      color: white !important;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #eef2f5;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: 0.2s;
+      z-index: 200;
+    }
+    .hamburger:hover {
+      color: #7ccf9c;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #0a1c2a;
+      z-index: 1000;
+      box-shadow: -8px 0 25px rgba(0,0,0,0.3);
+      transition: right 0.3s ease-in-out;
+      padding: 85px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      list-style: none;
+    }
+    .mobile-menu.active {
+      right: 0;
+    }
+    .mobile-menu li {
+      list-style: none;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #eef2f5;
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(124,207,156,0.2);
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover {
+      color: #7ccf9c;
+      padding-left: 8px;
+    }
+    .mobile-signin {
+      margin-top: 20px;
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c;
+      text-align: center;
+      border-radius: 40px;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .mobile-signin:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .close-menu {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #eef2f5;
+      cursor: pointer;
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    .menu-overlay.active {
+      display: block;
+    }
+
+    /* Virtual Tour Hero */
+    .tour-hero {
+      background: linear-gradient(135deg, #1a2c3e 0%, #0a1c2a 100%);
+      padding: 60px 0 40px;
+      text-align: center;
+      color: white;
+    }
+
+    .tour-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .tour-hero p {
+      font-size: 1.1rem;
+      color: #cddfe7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Property Selector */
+    .property-selector {
+      padding: 40px 0 20px;
+      text-align: center;
+    }
+
+    .property-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .property-btn {
+      background: #f1f5f9;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #4a5b6b;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .property-btn:hover {
+      background: #e0e8f0;
+      transform: translateY(-2px);
+    }
+
+    .property-btn.active {
+      background: #2b7a4b;
+      color: white;
+    }
+
+    /* Main Tour Section */
+    .tour-section {
+      padding: 20px 0 50px;
+    }
+
+    .tour-container {
+      background: #f8f9fa;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    .tour-header {
+      background: white;
+      padding: 24px 32px;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .tour-header h2 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #1a2c3e;
+    }
+
+    .tour-header p {
+      color: #5d6f7f;
+    }
+
+    /* Virtual Tour Content */
+    .virtual-tour {
+      padding: 32px;
+      background: #ffffff;
+    }
+
+    /* 360 View Container */
+    .panorama-container {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      background: #e9ecef;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .panorama-view {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      transition: background-image 0.3s ease;
+    }
+
+    .panorama-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      cursor: pointer;
+    }
+
+    .panorama-container:hover .panorama-overlay {
+      opacity: 1;
+    }
+
+    .tour-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      background: rgba(0,0,0,0.7);
+      padding: 12px 20px;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+    }
+
+    .tour-controls button {
+      background: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #2b7a4b;
+      font-size: 1.2rem;
+    }
+
+    .tour-controls button:hover {
+      background: #2b7a4b;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .direction-indicator {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Thumbnail Gallery */
+    .thumbnail-gallery {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 16px 0;
+      scrollbar-width: thin;
+    }
+
+    .thumbnail {
+      flex-shrink: 0;
+      width: 120px;
+      height: 80px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .thumbnail:hover {
+      transform: translateY(-4px);
+    }
+
+    .thumbnail.active {
+      border-color: #2b7a4b;
+      transform: scale(1.02);
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Room Features */
+    .room-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+      padding: 24px;
+      background: #f8f9fa;
+      border-radius: 24px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: #e9f4ef;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2b7a4b;
+      font-size: 1.2rem;
+    }
+
+    .feature-text h4 {
+      font-size: 0.9rem;
+      color: #5d6f7f;
+      margin-bottom: 4px;
+    }
+
+    .feature-text p {
+      font-weight: 600;
+      color: #1a2c3e;
+    }
+
+    /* 3D Tour Section */
+    .threed-tour {
+      background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+      padding: 50px 0;
+      margin: 40px 0;
+      border-radius: 32px;
+    }
+
+    .threed-grid {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .threed-content {
+      flex: 1;
+    }
+
+    .threed-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      color: #1a2c3e;
+    }
+
+    .threed-content p {
+      color: #5d6f7f;
+      margin-bottom: 24px;
+    }
+
+    .threed-preview {
+      flex: 1;
+      background: #e9ecef;
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .threed-preview:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+    }
+
+    .threed-icon {
+      font-size: 4rem;
+      color: #2b7a4b;
+      margin-bottom: 16px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 40px 0;
+    }
+
+    .testimonial-grid {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 28px;
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      flex: 1;
+      min-width: 280px;
+      max-width: 350px;
+      border: 1px solid #edf2f7;
+    }
+
+    .testimonial-card i {
+      color: #f59e0b;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .testimonial-card p {
+      color: #4a5b6b;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #2b7a4b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: #2b7a4b;
+      margin: 40px 0 60px;
+      border-radius: 32px;
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: #e9f4ef;
+      margin-bottom: 24px;
+    }
+
+    .btn-light {
+      background: white;
+      color: #2b7a4b;
+      padding: 14px 34px;
+      border-radius: 40px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-light:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* WhatsApp floating button (same as index page) */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      z-index: 1050;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      animation: pulse-glow 1.8s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20b859;
+      box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
+    }
+    @keyframes pulse-glow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+      }
+      70% {
+        box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+    @media (max-width: 640px) {
+      .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        font-size: 1.7rem;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    /* Footer */
+    .footer {
+      background: #0a1c2a;
+      color: #adb7c2;
+      padding: 48px 0 24px;
+      margin-top: 20px;
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .footer-col {
+      flex: 1;
+      min-width: 140px;
+    }
+    .footer-col h4 {
+      color: #eef2f5;
+      font-weight: 600;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+    .footer-col a {
+      text-decoration: none;
+      color: #b9c4ce;
+      transition: color 0.2s;
+      font-size: 0.85rem;
+    }
+    .footer-col a:hover {
+      color: #7ccf9c;
+    }
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 30px 0 20px;
+    }
+    .social-icons a {
+      background: #1f2e38;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #cddfe7;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+    .social-icons a:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .footer-bottom {
+      border-top: 1px solid #1f2e38;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1200;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      max-width: 90%;
+      width: 800px;
+      padding: 20px;
+      border-radius: 24px;
+      position: relative;
+    }
+    .modal-content iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 16px;
+    }
+    .close-modal-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: white;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.75rem;
+      margin-top: -8px;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 24px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .brand img {
+        width: 60px;
+        height: 60px;
+      }
+      .notify-live-text {
+        font-size: 1rem;
+      }
+      .tour-hero h1 {
+        font-size: 2rem;
+      }
+      .panorama-container {
+        height: 300px;
+      }
+      .thumbnail {
+        width: 100px;
+        height: 70px;
+      }
+      .room-features {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-col {
+        text-align: center;
+        width: 100%;
+        max-width: 280px;
+      }
+      .threed-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="brand">
+      <img src="Images/logo.jpeg" alt="Netify Living Logo" onerror="this.src='https://placehold.co/72x72/0b2b3b/7ccf9c?text=NL'">
+      <span class="notify-live-text">NETIFY LIVE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">Aboutus</a></li>
+      <li><a href="amenities.html">Amenities</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="offers.html">Offers</a></li>
+      <li><a href="Virtualtour.html" class="signin-btn" style="background: #2b7a4b; color: white !important;"><i class="fas fa-vr-cardboard"></i> Virtual Tour</a></li>
+      <li><a href="#" id="signInBtnNav" class="signin-btn"><i class="fas fa-user-circle"></i> Sign In</a></li>
+    </ul>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="menu-overlay" id="menuOverlay"></div>
+<ul class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="aboutus.html">Aboutus</a></li>
+  <li><a href="amenities.html">Amenities</a></li>
+  <li><a href="experiences.html">Experiences</a></li>
+  <li><a href="offers.html">Offers</a></li>
+  <li><a href="Virtualtour.html">Virtual Tour</a></li>
+  <li><a href="#" id="mobileSignInBtn" class="mobile-signin"><i class="fas fa-user-circle"></i> Sign In</a></li>
+</ul>
+
+<main>
+  <!-- Hero Section -->
+  <section class="tour-hero">
+    <div class="container">
+      <h1><i class="fas fa-vr-cardboard"></i> Virtual Tour Experience</h1>
+      <p>Explore our premium PG spaces from the comfort of your home. 360° views, interactive walkthroughs, and immersive experiences.</p>
+    </div>
+  </section>
+
+  <!-- Property Selector -->
+  <section class="property-selector">
+    <div class="container">
+      <div class="property-buttons" id="propertyButtons">
+        <button class="property-btn active" data-property="koramangala">
+          <i class="fas fa-building"></i> Koramangala
+        </button>
+        <button class="property-btn" data-property="indiranagar">
+          <i class="fas fa-city"></i> Indiranagar
+        </button>
+        <button class="property-btn" data-property="hsr">
+          <i class="fas fa-home"></i> HSR Layout
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Tour Section -->
+  <section class="tour-section">
+    <div class="container">
+      <div class="tour-container">
+        <div class="tour-header">
+          <h2 id="propertyName">Netify Elite Koramangala</h2>
+          <p id="propertyAddress"><i class="fas fa-map-marker-alt"></i> Koramangala, Bangalore - 360° Virtual Walkthrough</p>
+        </div>
+        
+        <div class="virtual-tour">
+          <!-- Panorama View -->
+          <div class="panorama-container">
+            <div class="panorama-view" id="panoramaView">
+              <div class="panorama-overlay" id="panoramaOverlay">
+                <i class="fas fa-expand" style="font-size: 3rem; color: white;"></i>
+              </div>
+              <div class="tour-controls">
+                <button id="rotateLeft"><i class="fas fa-chevron-left"></i></button>
+                <button id="rotateRight"><i class="fas fa-chevron-right"></i></button>
+                <button id="fullscreenBtn"><i class="fas fa-expand"></i></button>
+              </div>
+              <div class="direction-indicator" id="directionIndicator">
+                <i class="fas fa-compass"></i> Viewing: Living Area
+              </div>
+            </div>
+          </div>
+
+          <!-- Thumbnail Gallery -->
+          <div class="thumbnail-gallery" id="thumbnailGallery">
+            <!-- Thumbnails will be loaded dynamically -->
+          </div>
+
+          <!-- Room Features -->
+          <div class="room-features" id="roomFeatures">
+            <!-- Features will be loaded dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D Tour Section -->
+  <div class="container">
+    <div class="threed-tour">
+      <div class="threed-grid">
+        <div class="threed-content">
+          <h3><i class="fas fa-cube"></i> Interactive 3D Tour</h3>
+          <p>Experience our spaces like never before with our immersive 3D walkthrough. Navigate through rooms, explore every corner, and get a real feel of your future home.</p>
+          <button class="btn-light" id="launch3dBtn" style="background: #2b7a4b; color: white;">
+            <i class="fas fa-play"></i> Launch 3D Tour
+          </button>
+        </div>
+        <div class="threed-preview" id="threedPreview">
+          <div class="threed-icon">
+            <i class="fas fa-vr-cardboard"></i>
+          </div>
+          <h4>360° Interactive Experience</h4>
+          <p style="margin-top: 12px;">Click to start your immersive journey</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 40px;">What Our Residents Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left fa-2x"></i>
+          <p>"The virtual tour was incredibly realistic! I felt like I was actually walking through the property. Made my decision so much easier."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RP</div>
+            <div>
+              <strong>Rahul Patel</strong><br>
+              <small>Resident since 2024</small>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left fa-2x"></i>
+          <p>"Being able to see the room dimensions and amenities virtually helped me choose the perfect space. Highly recommended!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">PS</div>
+            <div>
+              <strong>Priya Sharma</strong><br>
+              <small>Software Engineer</small>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left fa-2x"></i>
+          <p>"The 360° tour gave me confidence to book without visiting in person. Everything was exactly as shown. Amazing experience!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AK</div>
+            <div>
+              <strong>Arjun Kumar</strong><br>
+              <small>Startup Founder</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <div class="container">
+    <div class="cta-section">
+      <h2>Ready to experience it in person?</h2>
+      <p>Schedule a physical tour or book your stay online with exclusive benefits</p>
+      <a href="#" class="btn-light" id="scheduleTourBtn"><i class="fas fa-calendar-alt"></i> Schedule a Tour</a>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>About Us</h4><ul><li><a href="ourstory.html">Our Story</a></li><li><a href="careers.html">Careers</a></li><li><a href="press.html">Press</a></li><li><a href="sustainability.html">Sustainability</a></li></ul></div>
+      <div class="footer-col"><h4>Cities</h4><ul><li><a href="bangalore.html">Bangalore</a></li><li><a href="mumbai.html">Mumbai</a></li><li><a href="hyderabad.html">Hyderabad</a></li><li><a href="chennai.html">Chennai</a></li></ul></div>
+      <div class="footer-col"><h4>Explore</h4><ul><li><a href="findpg.html">Find PG</a></li><li><a href="offers.html">Offers</a></li><li><a href="Virtualtour.html">Virtual Tour</a></li><li><a href="rooms.html">Rooms</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="helpcenter.html">Help Center</a></li><li><a href="safetyguide.html">Safety Guide</a></li><li><a href="contactus.html">Contact Us</a></li><li><a href="refundpolicy.html">Refund Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Community</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="stories.html">Stories</a></li><li><a href="events.html">Events</a></li><li><a href="refer.html">Refer & Earn</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="grievance.html">Grievance</a></li><li><a href="rera.html">RERA</a></li></ul></div>
+    </div>
+    
+    <div class="social-icons">
+      <a href="http://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="http://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="http://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="http://www.twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    
+    <div class="footer-bottom">
+      <span>© 2025 Netify Living — Premium Coliving Spaces. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Icon (same as index page, right side bottom) -->
+<a href="https://wa.me/919876543210?text=Hello%20Netify%20Living%2C%20I'm%20interested%20in%20your%20premium%20PG%20spaces!" 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Chat with us on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- 3D Tour Modal -->
+<div id="threedModal" class="modal">
+  <div class="modal-content">
+    <button class="close-modal-btn" id="close3dModal">&times;</button>
+    <iframe id="threedFrame" src="https://my.matterport.com/show/?m=example" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Sign In Modal -->
+<div id="signinModal" class="modal">
+  <div class="modal-content" style="max-width: 400px;">
+    <h3><i class="fas fa-key"></i> Sign In</h3>
+    <input type="email" id="loginEmail" placeholder="Email address" autocomplete="email">
+    <div id="emailError" class="error-msg"></div>
+    <input type="password" id="loginPassword" placeholder="Password (min 6 chars)">
+    <div id="passError" class="error-msg"></div>
+    <button id="submitSignIn">Sign In</button>
+    <button class="close-modal" id="closeModalBtn">Cancel</button>
+  </div>
+</div>
+
+<script>
+  // Property Data
+  const properties = {
+    koramangala: {
+      name: "Netify Elite Koramangala",
+      address: "Koramangala, Bangalore - 360° Virtual Walkthrough",
+      views: [
+        { name: "Living Area", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" },
+        { name: "Bedroom", image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80" },
+        { name: "Kitchen", image: "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" },
+        { name: "Dining Area", image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" },
+        { name: "Terrace", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" }
+      ],
+      features: [
+        { icon: "fas fa-ruler-combined", label: "Room Size", value: "250 sq.ft" },
+        { icon: "fas fa-bed", label: "Bed Type", value: "King Size" },
+        { icon: "fas fa-wifi", label: "WiFi Speed", value: "100 Mbps" },
+        { icon: "fas fa-tshirt", label: "Storage", value: "Walk-in Closet" },
+        { icon: "fas fa-tv", label: "Entertainment", value: "Smart TV" },
+        { icon: "fas fa-fan", label: "AC", value: "Split AC" }
+      ]
+    },
+    indiranagar: {
+      name: "Netify Hub - Indiranagar",
+      address: "Indiranagar, Bangalore - 360° Virtual Walkthrough",
+      views: [
+        { name: "Living Area", image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" },
+        { name: "Bedroom", image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" },
+        { name: "Study Area", image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" },
+        { name: "Gym", image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" },
+        { name: "Cafe", image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" }
+      ],
+      features: [
+        { icon: "fas fa-ruler-combined", label: "Room Size", value: "300 sq.ft" },
+        { icon: "fas fa-bed", label: "Bed Type", value: "Queen Size" },
+        { icon: "fas fa-wifi", label: "WiFi Speed", value: "200 Mbps" },
+        { icon: "fas fa-dumbbell", label: "Gym Access", value: "24/7" },
+        { icon: "fas fa-mug-hot", label: "Cafe", value: "In-house" },
+        { icon: "fas fa-laptop", label: "Coworking", value: "Available" }
+      ]
+    },
+    hsr: {
+      name: "Netify - HSR Layout",
+      address: "HSR Layout, Bangalore - 360° Virtual Walkthrough",
+      views: [
+        { name: "Living Area", image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" },
+        { name: "Bedroom", image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80" },
+        { name: "Swimming Pool", image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" },
+        { name: "Community Hall", image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" },
+        { name: "Garden", image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" }
+      ],
+      features: [
+        { icon: "fas fa-ruler-combined", label: "Room Size", value: "280 sq.ft" },
+        { icon: "fas fa-bed", label: "Bed Type", value: "King Size" },
+        { icon: "fas fa-swimmer", label: "Pool Access", value: "Yes" },
+        { icon: "fas fa-tree", label: "Garden", value: "Landscaped" },
+        { icon: "fas fa-users", label: "Community", value: "Active" },
+        { icon: "fas fa-shield-alt", label: "Security", value: "24/7" }
+      ]
+    }
+  };
+
+  let currentProperty = "koramangala";
+  let currentViewIndex = 0;
+
+  // Load Property Data
+  function loadProperty(propertyId) {
+    currentProperty = propertyId;
+    const property = properties[propertyId];
+    
+    document.getElementById("propertyName").textContent = property.name;
+    document.getElementById("propertyAddress").innerHTML = `<i class="fas fa-map-marker-alt"></i> ${property.address}`;
+    
+    // Load thumbnails
+    const gallery = document.getElementById("thumbnailGallery");
+    gallery.innerHTML = property.views.map((view, index) => `
+      <div class="thumbnail ${index === currentViewIndex ? 'active' : ''}" data-view-index="${index}">
+        <img src="${view.image}" alt="${view.name}">
+      </div>
+    `).join("");
+    
+    // Load main view
+    updateMainView(currentViewIndex);
+    
+    // Load features
+    const featuresContainer = document.getElementById("roomFeatures");
+    featuresContainer.innerHTML = property.features.map(feature => `
+      <div class="feature">
+        <div class="feature-icon"><i class="${feature.icon}"></i></div>
+        <div class="feature-text">
+          <h4>${feature.label}</h4>
+          <p>${feature.value}</p>
+        </div>
+      </div>
+    `).join("");
+    
+    // Add click handlers to thumbnails
+    document.querySelectorAll(".thumbnail").forEach(thumb => {
+      thumb.addEventListener("click", (e) => {
+        const index = parseInt(thumb.getAttribute("data-view-index"));
+        currentViewIndex = index;
+        updateMainView(currentViewIndex);
+        
+        // Update active class
+        document.querySelectorAll(".thumbnail").forEach(t => t.classList.remove("active"));
+        thumb.classList.add("active");
+      });
+    });
+  }
+  
+  function updateMainView(index) {
+    const property = properties[currentProperty];
+    const view = property.views[index];
+    const panoramaView = document.getElementById("panoramaView");
+    panoramaView.style.backgroundImage = `url('${view.image}')`;
+    panoramaView.style.backgroundSize = "cover";
+    panoramaView.style.backgroundPosition = "center";
+    
+    document.getElementById("directionIndicator").innerHTML = `<i class="fas fa-compass"></i> Viewing: ${view.name}`;
+  }
+  
+  // Rotation functionality
+  let currentRotation = 0;
+  document.getElementById("rotateLeft").addEventListener("click", () => {
+    currentRotation = (currentRotation - 90) % 360;
+    const panoramaView = document.getElementById("panoramaView");
+    panoramaView.style.backgroundPosition = `${currentRotation}px center`;
+  });
+  
+  document.getElementById("rotateRight").addEventListener("click", () => {
+    currentRotation = (currentRotation + 90) % 360;
+    const panoramaView = document.getElementById("panoramaView");
+    panoramaView.style.backgroundPosition = `${currentRotation}px center`;
+  });
+  
+  // Fullscreen functionality
+  document.getElementById("fullscreenBtn").addEventListener("click", () => {
+    const container = document.querySelector(".panorama-container");
+    if (container.requestFullscreen) {
+      container.requestFullscreen();
+    }
+  });
+  
+  // Property buttons
+  document.querySelectorAll(".property-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".property-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const propertyId = btn.getAttribute("data-property");
+      currentViewIndex = 0;
+      currentRotation = 0;
+      loadProperty(propertyId);
+    });
+  });
+  
+  // 3D Tour Modal
+  const threedModal = document.getElementById("threedModal");
+  const launch3dBtn = document.getElementById("launch3dBtn");
+  const threedPreview = document.getElementById("threedPreview");
+  const close3dModal = document.getElementById("close3dModal");
+  const threedFrame = document.getElementById("threedFrame");
+  
+  function open3dModal() {
+    threedModal.style.display = "flex";
+    threedFrame.src = "https://my.matterport.com/show/?m=WqZqZqZqZqZ";
+  }
+  
+  launch3dBtn.addEventListener("click", open3dModal);
+  threedPreview.addEventListener("click", open3dModal);
+  close3dModal.addEventListener("click", () => {
+    threedModal.style.display = "none";
+    threedFrame.src = "";
+  });
+  
+  window.addEventListener("click", (e) => {
+    if (e.target === threedModal) {
+      threedModal.style.display = "none";
+      threedFrame.src = "";
+    }
+  });
+  
+  // Schedule Tour Button
+  document.getElementById("scheduleTourBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("📅 Schedule a Physical Tour\n\nOur team will contact you within 24 hours to confirm your preferred date and time for a personal tour of our properties.");
+  });
+  
+  // Panorama overlay
+  document.getElementById("panoramaOverlay").addEventListener("click", () => {
+    alert("🎥 Interactive 360° View\n\nUse the left/right arrows to rotate the view. Click on thumbnails to explore different areas of the property.");
+  });
+  
+  // Initialize
+  loadProperty("koramangala");
+  
+  // Mobile Menu
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  
+  function openMenu() { mobileMenu.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { mobileMenu.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+  
+  hamburger.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  
+  const mobileLinks = document.querySelectorAll('.mobile-menu a');
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+  
+  // Sign In Modal
+  const modal = document.getElementById('signinModal');
+  const signInBtns = document.querySelectorAll('#signInBtnNav, #mobileSignInBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const submitBtn = document.getElementById('submitSignIn');
+  const emailInput = document.getElementById('loginEmail');
+  const passwordInput = document.getElementById('loginPassword');
+  const emailError = document.getElementById('emailError');
+  const passError = document.getElementById('passError');
+  
+  function openModalFunc(e) { if(e) e.preventDefault(); modal.style.display = 'flex'; }
+  function closeModalFunc() { modal.style.display = 'none'; emailError.innerText = ''; passError.innerText = ''; emailInput.value = ''; passwordInput.value = ''; }
+  
+  signInBtns.forEach(btn => btn.addEventListener('click', openModalFunc));
+  closeModalBtn.addEventListener('click', closeModalFunc);
+  window.addEventListener('click', (e) => { if(e.target === modal) closeModalFunc(); });
+  
+  function validateEmail(email) { const re = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/; return re.test(email); }
+  
+  submitBtn.addEventListener('click', () => {
+    let isValid = true;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    emailError.innerText = '';
+    passError.innerText = '';
+    if(!email) { emailError.innerText = 'Email is required'; isValid = false; }
+    else if(!validateEmail(email)) { emailError.innerText = 'Enter a valid email'; isValid = false; }
+    if(!password) { passError.innerText = 'Password is required'; isValid = false; }
+    else if(password.length < 6) { passError.innerText = 'Password must be at least 6 characters'; isValid = false; }
+    if(isValid) { alert(`✅ Welcome back! (Demo sign-in successful for ${email})`); closeModalFunc(); }
+  });
+</script>
+</body>
+</html>

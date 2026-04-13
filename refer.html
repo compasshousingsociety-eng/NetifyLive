@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Netify Living | Refer & Earn - Rewards Program</title>
+  <!-- Google Fonts + simple reset & modern styling -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefefe;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .navbar, .footer {
+      background: #0b2b3b;
+    }
+    .footer {
+      background: #0a1c2a;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .brand img { 
+      width: 72px;
+      height: 72px;
+      object-fit: cover; 
+      border-radius: 14px;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: #fff;
+      transition: transform 0.2s ease;
+    }
+    .brand img:hover {
+      transform: scale(1.02);
+    }
+
+    .notify-live-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7ccf9c 0%, #2b7a4b 60%, #3f9c66 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+      padding-left: 6px;
+      border-left: 2.5px solid #7ccf9c;
+      margin-left: 4px;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .notify-live-text i {
+      font-size: 0.9rem;
+      color: #7ccf9c;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #7ccf9c;
+      margin-right: 5px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #eef2f5;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #7ccf9c;
+    }
+
+    .signin-btn {
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c !important;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .signin-btn:hover {
+      background: #2b7a4b;
+      border-color: #2b7a4b;
+      color: white !important;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #eef2f5;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: 0.2s;
+      z-index: 200;
+    }
+    .hamburger:hover {
+      color: #7ccf9c;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #0a1c2a;
+      z-index: 1000;
+      box-shadow: -8px 0 25px rgba(0,0,0,0.3);
+      transition: right 0.3s ease-in-out;
+      padding: 85px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      list-style: none;
+    }
+    .mobile-menu.active {
+      right: 0;
+    }
+    .mobile-menu li {
+      list-style: none;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #eef2f5;
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(124,207,156,0.2);
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover {
+      color: #7ccf9c;
+      padding-left: 8px;
+    }
+    .mobile-signin {
+      margin-top: 20px;
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c;
+      text-align: center;
+      border-radius: 40px;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .mobile-signin:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .close-menu {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #eef2f5;
+      cursor: pointer;
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    .menu-overlay.active {
+      display: block;
+    }
+
+    /* REFER & EARN PAGE STYLES */
+    .refer-hero {
+      background: linear-gradient(125deg, #f0f7e8 0%, #ffffff 100%);
+      padding: 60px 0 50px;
+      text-align: center;
+      border-bottom: 1px solid #d4e2d9;
+    }
+    .refer-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(125deg, #1a2c3e, #2b7a4b);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .refer-hero p {
+      font-size: 1.2rem;
+      color: #4a5b6b;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .reward-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffd96620;
+      padding: 12px 28px;
+      border-radius: 80px;
+      margin-top: 28px;
+      font-weight: 700;
+      color: #b56a0c;
+      border: 1px solid #ffcd6b;
+    }
+
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin: 50px 0 40px;
+    }
+    .stat-card {
+      background: white;
+      border-radius: 32px;
+      padding: 28px 24px;
+      text-align: center;
+      flex: 1;
+      min-width: 200px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.04);
+      border: 1px solid #eef2f5;
+    }
+    .stat-icon {
+      background: #eef6f2;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 2rem;
+      color: #2b7a4b;
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1f5e3a;
+      margin-bottom: 8px;
+    }
+    .how-it-works {
+      background: #fafef8;
+      padding: 60px 0;
+      border-radius: 48px;
+      margin: 20px 0 50px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 48px;
+    }
+    .steps-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+    .step-item {
+      flex: 1;
+      min-width: 240px;
+      text-align: center;
+      padding: 24px;
+    }
+    .step-number {
+      background: #2b7a4b;
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 auto 20px;
+    }
+    .referral-card {
+      background: linear-gradient(135deg, #0f2a1e, #1f3a2c);
+      border-radius: 48px;
+      padding: 44px 40px;
+      margin: 40px 0 50px;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+    .code-box {
+      background: rgba(255,255,255,0.12);
+      border-radius: 60px;
+      padding: 8px 8px 8px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .referral-code {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      font-family: monospace;
+      background: #ffffff20;
+      padding: 10px 20px;
+      border-radius: 50px;
+    }
+    .copy-btn {
+      background: #7ccf9c;
+      border: none;
+      color: #0a1c2a;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .refer-form-section {
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 48px;
+      margin: 30px 0 60px;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+      border: 1px solid #eef2f5;
+    }
+    .form-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
+    }
+    .form-left {
+      flex: 1.2;
+    }
+    .form-left h3 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    .form-left > p {
+      margin-bottom: 24px;
+      color: #5d6f7f;
+    }
+    .refer-form {
+      margin-top: 8px;
+    }
+    .input-group {
+      margin-bottom: 20px;
+    }
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: #1a2c3e;
+    }
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 60px;
+      border: 1px solid #e2e8f0;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: 0.2s;
+      background: white;
+    }
+    .input-group input:focus, .input-group select:focus {
+      outline: none;
+      border-color: #2b7a4b;
+      box-shadow: 0 0 0 3px #7ccf9c30;
+    }
+    .error-msg-field {
+      color: #e53e3e;
+      font-size: 0.7rem;
+      margin-top: 5px;
+      display: block;
+    }
+    .refer-btn {
+      background: #2b7a4b;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+      margin-top: 8px;
+    }
+    .refer-btn:hover {
+      background: #1f5e3a;
+      transform: translateY(-2px);
+    }
+    .form-right {
+      flex: 0.9;
+      background: #f9fefb;
+      border-radius: 32px;
+      padding: 32px;
+      text-align: center;
+    }
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 18px 0;
+      font-weight: 500;
+    }
+    .perk-item i {
+      color: #2b7a4b;
+      font-size: 1.3rem;
+      width: 28px;
+    }
+    .leaderboard {
+      background: #fafef8;
+      border-radius: 40px;
+      padding: 40px;
+      margin: 40px 0 60px;
+    }
+    .leaderboard h3 {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 32px;
+    }
+    .rank-list {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .rank-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: white;
+      margin-bottom: 12px;
+      border-radius: 60px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      border: 1px solid #eef2f5;
+    }
+    .rank-number {
+      font-weight: 800;
+      font-size: 1.2rem;
+      width: 40px;
+      color: #2b7a4b;
+    }
+    .rank-name {
+      flex: 1;
+      font-weight: 600;
+    }
+    .rank-rewards {
+      font-weight: 700;
+      color: #1f5e3a;
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a2c3e;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 60px;
+      z-index: 1300;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .toast-msg.show {
+      opacity: 1;
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      z-index: 1050;
+      text-decoration: none;
+      animation: pulse-glow 1.8s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20b859;
+    }
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+      70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    .footer {
+      background: #0a1c2a;
+      color: #adb7c2;
+      padding: 48px 0 24px;
+      margin-top: 20px;
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .footer-col {
+      flex: 1;
+      min-width: 140px;
+    }
+    .footer-col h4 {
+      color: #eef2f5;
+      font-weight: 600;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+    .footer-col a {
+      text-decoration: none;
+      color: #b9c4ce;
+      transition: color 0.2s;
+      font-size: 0.85rem;
+    }
+    .footer-col a:hover {
+      color: #7ccf9c;
+    }
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 30px 0 20px;
+    }
+    .social-icons a {
+      background: #1f2e38;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #cddfe7;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+    .social-icons a:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .footer-bottom {
+      border-top: 1px solid #1f2e38;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      max-width: 400px;
+      width: 90%;
+      padding: 32px;
+      border-radius: 32px;
+      text-align: center;
+      box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+    }
+    .modal-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #1f5e3a;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border: 1px solid #ddd;
+      border-radius: 60px;
+      font-size: 1rem;
+    }
+    .modal-content button {
+      background: #2b7a4b;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 60px;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+    .close-modal {
+      margin-top: 16px;
+      background: transparent;
+      color: #777;
+      border: none;
+      cursor: pointer;
+    }
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.75rem;
+      margin-top: -8px;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    @media (max-width: 780px) {
+      .container { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .brand img { width: 60px; height: 60px; }
+      .refer-hero h1 { font-size: 2rem; }
+      .referral-card { flex-direction: column; text-align: center; }
+      .code-box { justify-content: center; }
+      .form-grid { flex-direction: column; }
+      .stats-row { flex-direction: column; }
+      .footer-grid { flex-direction: column; align-items: center; text-align: center; }
+      .whatsapp-float { width: 52px; height: 52px; font-size: 1.7rem; bottom: 20px; right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="brand">
+      <img src="Images/logo.jpeg" alt="Netify Living Logo" onerror="this.src='https://placehold.co/72x72/0b2b3b/7ccf9c?text=NL'">
+      <span class="notify-live-text">NETIFY LIVE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">Aboutus</a></li>
+      <li><a href="amenities.html">Amenities</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="#" id="signInBtnNav" class="signin-btn"><i class="fas fa-user-circle"></i> Sign In</a></li>
+    </ul>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<ul class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="aboutus.html">Aboutus</a></li>
+  <li><a href="amenities.html">Amenities</a></li>
+  <li><a href="experiences.html">Experiences</a></li>
+  <li><a href="#" id="mobileSignInBtn" class="mobile-signin"><i class="fas fa-user-circle"></i> Sign In</a></li>
+</ul>
+
+<main>
+  <section class="refer-hero">
+    <div class="container">
+      <h1><i class="fas fa-gift"></i> Refer & Earn Rewards</h1>
+      <p>Share the Netify experience with friends and earn up to ₹10,000 per referral. No limits, endless rewards!</p>
+      <div class="reward-badge"><i class="fas fa-trophy"></i> Double rewards this month — ₹2,000 extra per successful referral!</div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-icon"><i class="fas fa-rupee-sign"></i></div><div class="stat-number">₹8,500</div><div class="stat-label">Avg. reward per referrer</div></div>
+      <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-number">1,250+</div><div class="stat-label">Happy referrals this year</div></div>
+      <div class="stat-card"><div class="stat-icon"><i class="fas fa-infinity"></i></div><div class="stat-number">Unlimited</div><div class="stat-label">Earn without caps</div></div>
+    </div>
+
+    <div class="how-it-works">
+      <h2 class="section-title">How It Works</h2>
+      <div class="steps-grid">
+        <div class="step-item"><div class="step-number">1</div><h3>Share Your Code</h3><p>Get your unique referral code and share with friends.</p></div>
+        <div class="step-item"><div class="step-number">2</div><h3>Friend Joins Netify</h3><p>Your friend signs a lease using your code.</p></div>
+        <div class="step-item"><div class="step-number">3</div><h3>Get Rewarded</h3><p>Receive ₹5,000 - ₹10,000 per successful move-in.</p></div>
+      </div>
+    </div>
+
+    <div class="referral-card">
+      <div class="referral-info"><h3><i class="fas fa-qrcode"></i> Your Personal Referral Code</h3><p>Share this code with anyone looking for premium coliving spaces</p></div>
+      <div class="code-box"><span class="referral-code" id="referralCodeText">NETIFY2025</span><button class="copy-btn" id="copyCodeBtn"><i class="fas fa-copy"></i> Copy Code</button></div>
+    </div>
+
+    <!-- Referral Form with proper labels & validations -->
+    <div class="refer-form-section">
+      <div class="form-grid">
+        <div class="form-left">
+          <h3>Send a Referral Now</h3>
+          <p>Invite your friend and we'll notify them with exclusive benefits.</p>
+          <div class="refer-form">
+            <div class="input-group">
+              <label for="friendName">Friend's Full Name <span style="color:#e53e3e;">*</span></label>
+              <input type="text" id="friendName" placeholder="e.g., John Doe">
+              <span class="error-msg-field" id="nameError"></span>
+            </div>
+            <div class="input-group">
+              <label for="friendEmail">Friend's Email Address <span style="color:#e53e3e;">*</span></label>
+              <input type="email" id="friendEmail" placeholder="friend@gmail.com">
+              <span class="error-msg-field" id="emailErrorField"></span>
+            </div>
+            <div class="input-group">
+              <label for="friendPhone">Phone Number <span style="color:#e53e3e;">*</span></label>
+              <input type="tel" id="friendPhone" placeholder="10-digit mobile number">
+              <span class="error-msg-field" id="phoneError"></span>
+            </div>
+            <div class="input-group">
+              <label for="propertySelect">Preferred City / PG <span style="color:#e53e3e;">*</span></label>
+              <select id="propertySelect">
+                <option value="">Select preferred location</option>
+                <option>Koramangala, Bangalore</option>
+                <option>Indiranagar, Bangalore</option>
+                <option>HSR Layout, Bangalore</option>
+                <option>Whitefield, Bangalore</option>
+                <option>Andheri, Mumbai</option>
+                <option>Gachibowli, Hyderabad</option>
+              </select>
+              <span class="error-msg-field" id="propertyError"></span>
+            </div>
+            <button class="refer-btn" id="sendReferralBtn"><i class="fas fa-paper-plane"></i> Send Invitation</button>
+          </div>
+        </div>
+        <div class="form-right">
+          <i class="fas fa-medal" style="font-size: 2.5rem; color:#2b7a4b;"></i>
+          <h3 style="margin: 12px 0;">Referral Perks</h3>
+          <div class="perk-item"><i class="fas fa-check-circle"></i> ₹5,000 for each referral</div>
+          <div class="perk-item"><i class="fas fa-check-circle"></i> Extra ₹2,000 if friend chooses premium suite</div>
+          <div class="perk-item"><i class="fas fa-check-circle"></i> ₹10,000 bonus on 5th referral</div>
+          <div class="perk-item"><i class="fas fa-check-circle"></i> Exclusive Netify merchandise after 3 referrals</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="leaderboard">
+      <h3><i class="fas fa-chart-line"></i> Top Referrers This Month</h3>
+      <div class="rank-list">
+        <div class="rank-item"><span class="rank-number">🥇 1</span><span class="rank-name">Rahul Sharma</span><span class="rank-rewards">₹24,500 earned</span></div>
+        <div class="rank-item"><span class="rank-number">🥈 2</span><span class="rank-name">Meera Iyer</span><span class="rank-rewards">₹18,200 earned</span></div>
+        <div class="rank-item"><span class="rank-number">🥉 3</span><span class="rank-name">Kunal Verma</span><span class="rank-rewards">₹15,000 earned</span></div>
+        <div class="rank-item"><span class="rank-number">4</span><span class="rank-name">Anjali Nair</span><span class="rank-rewards">₹12,500 earned</span></div>
+        <div class="rank-item"><span class="rank-number">5</span><span class="rank-name">Vikram Singh</span><span class="rank-rewards">₹9,000 earned</span></div>
+      </div>
+      <p style="text-align: center; margin-top: 28px;">🏆 Top referrer wins a fully sponsored weekend getaway!</p>
+    </div>
+  </div>
+</main>
+
+<!-- ========== FOOTER - SAME AS INDEX PAGE (6 COLUMNS) ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>About Us</h4><ul><li><a href="ourstory.html">Our Story</a></li><li><a href="careers.html">Careers</a></li><li><a href="press.html">Press</a></li><li><a href="sustainability.html">Sustainability</a></li></ul></div>
+      <div class="footer-col"><h4>Cities</h4><ul><li><a href="bangalore.html">Bangalore</a></li><li><a href="mumbai.html">Mumbai</a></li><li><a href="hyderabad.html">Hyderabad</a></li><li><a href="chennai.html">Chennai</a></li></ul></div>
+      <div class="footer-col"><h4>Explore</h4><ul><li><a href="findpg.html">Find PG</a></li><li><a href="offers.html">Offers</a></li><li><a href="Virtualtour.html">Virtual Tour</a></li><li><a href="rooms.html">Rooms</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="helpcenter.html">Help Center</a></li><li><a href="safetyguide.html">Safety Guide</a></li><li><a href="contactus.html">Contact Us</a></li><li><a href="refundpolicy.html">Refund Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Community</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="stories.html">Stories</a></li><li><a href="events.html">Events</a></li><li><a href="refer.html">Refer & Earn</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="grievance.html">Grievance</a></li><li><a href="rera.html">RERA</a></li></ul></div>
+    </div>
+    <div class="social-icons">
+      <a href="http://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="http://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="http://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="http://www.twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Netify Living — Premium Coliving Spaces. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="signinModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-key"></i> Sign In</h3>
+    <input type="email" id="loginEmail" placeholder="Email address" autocomplete="email">
+    <div id="emailError" class="error-msg"></div>
+    <input type="password" id="loginPassword" placeholder="Password (min 6 chars)">
+    <div id="passError" class="error-msg"></div>
+    <button id="submitSignIn">Sign In</button>
+    <button class="close-modal" id="closeModalBtn">Cancel</button>
+  </div>
+</div>
+
+<div id="toastMsg" class="toast-msg"></div>
+<a href="https://wa.me/919876543210?text=Hello%20Netify%20Living%2C%20I'm%20interested%20in%20your%20referral%20program!" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+  // Helper: trim and prevent leading spaces (actual value trimmed on blur/validation)
+  function trimInputValue(inputElem) { if(inputElem) inputElem.value = inputElem.value.trimStart(); }
+  
+  // Validation functions
+  function validateName(name) {
+    const trimmed = name.trim();
+    if(!trimmed) return "Full name is required";
+    if(/[^a-zA-Z\s]/.test(trimmed)) return "Name cannot contain digits or special characters";
+    return "";
+  }
+  
+  function validateEmail(email) {
+    const trimmed = email.trim();
+    if(!trimmed) return "Email address is required";
+    if(!trimmed.toLowerCase().endsWith("@gmail.com")) return "Email must end with @gmail.com";
+    if(trimmed.includes(" ")) return "Email cannot contain spaces";
+    return "";
+  }
+  
+  function validatePhone(phone) {
+    const trimmed = phone.trim();
+    if(!trimmed) return "Mobile number is required";
+    if(!/^[6-9]\d{9}$/.test(trimmed)) return "Mobile number must start with 6-9 and be exactly 10 digits";
+    return "";
+  }
+  
+  function validateProperty(prop) { return !prop ? "Please select a preferred location" : ""; }
+  
+  // Clear errors and trim on input blur
+  const nameInput = document.getElementById('friendName');
+  const emailInputField = document.getElementById('friendEmail');
+  const phoneInput = document.getElementById('friendPhone');
+  const propertySelect = document.getElementById('propertySelect');
+  
+  [nameInput, emailInputField, phoneInput].forEach(inp => {
+    inp.addEventListener('blur', function() { this.value = this.value.trimStart(); });
+    inp.addEventListener('input', function() { this.value = this.value.trimStart(); });
+  });
+  
+  function clearAllErrors() {
+    document.getElementById('nameError').innerText = "";
+    document.getElementById('emailErrorField').innerText = "";
+    document.getElementById('phoneError').innerText = "";
+    document.getElementById('propertyError').innerText = "";
+  }
+  
+  function showToast(msg) {
+    const toastEl = document.getElementById('toastMsg');
+    toastEl.innerText = msg;
+    toastEl.classList.add('show');
+    setTimeout(() => toastEl.classList.remove('show'), 2500);
+  }
+  
+  // Send referral button logic
+  const sendBtn = document.getElementById('sendReferralBtn');
+  sendBtn.addEventListener('click', () => {
+    clearAllErrors();
+    let isValid = true;
+    
+    const nameRaw = nameInput.value;
+    const emailRaw = emailInputField.value;
+    const phoneRaw = phoneInput.value;
+    const property = propertySelect.value;
+    
+    const nameErr = validateName(nameRaw);
+    if(nameErr) { document.getElementById('nameError').innerText = nameErr; isValid = false; }
+    
+    const emailErr = validateEmail(emailRaw);
+    if(emailErr) { document.getElementById('emailErrorField').innerText = emailErr; isValid = false; }
+    
+    const phoneErr = validatePhone(phoneRaw);
+    if(phoneErr) { document.getElementById('phoneError').innerText = phoneErr; isValid = false; }
+    
+    const propErr = validateProperty(property);
+    if(propErr) { document.getElementById('propertyError').innerText = propErr; isValid = false; }
+    
+    if(isValid) {
+      const friendNameVal = nameRaw.trim();
+      const friendEmailVal = emailRaw.trim();
+      showToast(`🎉 Referral sent to ${friendNameVal} (${friendEmailVal})! They'll receive code NETIFY2025. You earn ₹5,000 on successful move-in.`);
+      // Reset form after successful referral
+      nameInput.value = "";
+      emailInputField.value = "";
+      phoneInput.value = "";
+      propertySelect.value = "";
+      clearAllErrors();
+    }
+  });
+  
+  // Copy referral code
+  const copyBtn = document.getElementById('copyCodeBtn');
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText("NETIFY2025").then(() => showToast('✅ Referral code copied! Share it with your friends.'));
+  });
+  
+  // Sign in modal logic
+  const modalSign = document.getElementById('signinModal');
+  const signInBtns = document.querySelectorAll('#signInBtnNav, #mobileSignInBtn');
+  const closeModalBtnSign = document.getElementById('closeModalBtn');
+  const submitSignIn = document.getElementById('submitSignIn');
+  const loginEmail = document.getElementById('loginEmail');
+  const loginPassword = document.getElementById('loginPassword');
+  const emailErrorSpan = document.getElementById('emailError');
+  const passErrorSpan = document.getElementById('passError');
+  function openSignModal(e) { e.preventDefault(); modalSign.style.display = 'flex'; }
+  function closeSignModal() { modalSign.style.display = 'none'; emailErrorSpan.innerText = ''; passErrorSpan.innerText = ''; loginEmail.value = ''; loginPassword.value = ''; }
+  signInBtns.forEach(btn => btn.addEventListener('click', openSignModal));
+  closeModalBtnSign.addEventListener('click', closeSignModal);
+  window.addEventListener('click', (e) => { if(e.target === modalSign) closeSignModal(); });
+  function isValidEmail(email) { return /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/.test(email); }
+  submitSignIn.addEventListener('click', () => {
+    let valid = true;
+    const email = loginEmail.value.trim();
+    const pass = loginPassword.value.trim();
+    emailErrorSpan.innerText = ''; passErrorSpan.innerText = '';
+    if(!email) { emailErrorSpan.innerText = 'Email required'; valid=false; }
+    else if(!isValidEmail(email)) { emailErrorSpan.innerText = 'Valid email required'; valid=false; }
+    if(!pass) { passErrorSpan.innerText = 'Password required'; valid=false; }
+    else if(pass.length < 6) { passErrorSpan.innerText = 'Min 6 characters'; valid=false; }
+    if(valid) { alert(`✨ Welcome back ${email}! (Demo sign-in)`); closeSignModal(); }
+  });
+  
+  // Mobile menu
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlayMenu = document.getElementById('menuOverlay');
+  const closeMenu = document.getElementById('closeMenuBtn');
+  function openMenu() { mobileMenu.classList.add('active'); overlayMenu.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeMenuFunc() { mobileMenu.classList.remove('active'); overlayMenu.classList.remove('active'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', openMenu);
+  closeMenu.addEventListener('click', closeMenuFunc);
+  overlayMenu.addEventListener('click', closeMenuFunc);
+  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', closeMenuFunc));
+</script>
+</body>
+</html>

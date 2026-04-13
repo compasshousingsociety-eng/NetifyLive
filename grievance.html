@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Netify Living | Grievance Redressal - PG & Hostel Support</title>
+  <!-- Google Fonts + Inter font family -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefefe;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .navbar, .footer {
+      background: #0b2b3b;
+    }
+    .footer {
+      background: #0a1c2a;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .brand img { 
+      width: 72px;
+      height: 72px;
+      object-fit: cover; 
+      border-radius: 14px;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: #fff;
+      transition: transform 0.2s ease;
+    }
+    .brand img:hover {
+      transform: scale(1.02);
+    }
+
+    .notify-live-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7ccf9c 0%, #2b7a4b 60%, #3f9c66 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+      padding-left: 6px;
+      border-left: 2.5px solid #7ccf9c;
+      margin-left: 4px;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .notify-live-text i {
+      font-size: 0.9rem;
+      color: #7ccf9c;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #7ccf9c;
+      margin-right: 5px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #eef2f5;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #7ccf9c;
+    }
+
+    .signin-btn {
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c !important;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .signin-btn:hover {
+      background: #2b7a4b;
+      border-color: #2b7a4b;
+      color: white !important;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #eef2f5;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: 0.2s;
+      z-index: 200;
+    }
+    .hamburger:hover {
+      color: #7ccf9c;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #0a1c2a;
+      z-index: 1000;
+      box-shadow: -8px 0 25px rgba(0,0,0,0.3);
+      transition: right 0.3s ease-in-out;
+      padding: 85px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      list-style: none;
+    }
+    .mobile-menu.active {
+      right: 0;
+    }
+    .mobile-menu li {
+      list-style: none;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #eef2f5;
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(124,207,156,0.2);
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover {
+      color: #7ccf9c;
+      padding-left: 8px;
+    }
+    .mobile-signin {
+      margin-top: 20px;
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c;
+      text-align: center;
+      border-radius: 40px;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .mobile-signin:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .close-menu {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #eef2f5;
+      cursor: pointer;
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    .menu-overlay.active {
+      display: block;
+    }
+
+    /* Grievance Hero Section */
+    .grievance-hero {
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      padding: 60px 0 40px;
+      border-bottom: 1px solid #eef2f0;
+    }
+    .hero-badge {
+      background: #e9f4ef;
+      color: #1f5e3a;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .grievance-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #1a2c3e;
+      margin-bottom: 16px;
+    }
+    .grievance-hero p {
+      font-size: 1.1rem;
+      color: #4a5b6b;
+      max-width: 700px;
+      margin-bottom: 8px;
+    }
+
+    /* Grievance Form Section */
+    .grievance-form-section {
+      padding: 60px 0 70px;
+      background: #ffffff;
+    }
+    .form-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+    }
+    .form-container {
+      flex: 1.5;
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+      padding: 36px 32px;
+      border: 1px solid #edf2f7;
+    }
+    .info-sidebar {
+      flex: 1;
+      background: #f9fafc;
+      border-radius: 32px;
+      padding: 32px;
+      border: 1px solid #eef2f0;
+    }
+    .form-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #1a2c3e;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .form-title i {
+      color: #2b7a4b;
+      font-size: 1.8rem;
+    }
+    .input-group {
+      margin-bottom: 24px;
+    }
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #2c3e4e;
+      font-size: 0.9rem;
+    }
+    .input-group label span {
+      color: #e53e3e;
+    }
+    .input-group input, 
+    .input-group select, 
+    .input-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      background: #fefefe;
+    }
+    .input-group input:focus, 
+    .input-group select:focus, 
+    .input-group textarea:focus {
+      outline: none;
+      border-color: #2b7a4b;
+      box-shadow: 0 0 0 3px rgba(43, 122, 75, 0.1);
+    }
+    .radio-group {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .radio-group input {
+      width: auto;
+      transform: scale(1.1);
+    }
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.75rem;
+      margin-top: 6px;
+      display: block;
+    }
+    .submit-btn {
+      background: #2b7a4b;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .submit-btn:hover {
+      background: #1f5e3a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px -12px rgba(43, 122, 75, 0.4);
+    }
+    .info-card {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .info-card:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .info-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1f5e3a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .info-card p {
+      color: #4a5b6b;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .grievance-officer {
+      background: #eef6f2;
+      border-radius: 24px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .grievance-officer h4 {
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a2c3e;
+    }
+    .timeline-steps {
+      margin-top: 20px;
+    }
+    .step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+    .step-number {
+      background: #2b7a4b;
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .step-text {
+      font-size: 0.85rem;
+      color: #334e68;
+    }
+    .success-message {
+      background: #e6f7ec;
+      border-left: 5px solid #2b7a4b;
+      padding: 18px 22px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      display: none;
+      align-items: center;
+      gap: 14px;
+    }
+    .success-message i {
+      font-size: 1.8rem;
+      color: #2b7a4b;
+    }
+    .footer {
+      background: #0a1c2a;
+      color: #adb7c2;
+      padding: 48px 0 24px;
+      margin-top: 20px;
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .footer-col {
+      flex: 1;
+      min-width: 140px;
+    }
+    .footer-col h4 {
+      color: #eef2f5;
+      font-weight: 600;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+    .footer-col a {
+      text-decoration: none;
+      color: #b9c4ce;
+      transition: color 0.2s;
+      font-size: 0.85rem;
+    }
+    .footer-col a:hover {
+      color: #7ccf9c;
+    }
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 30px 0 20px;
+    }
+    .social-icons a {
+      background: #1f2e38;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #cddfe7;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+    .social-icons a:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .footer-bottom {
+      border-top: 1px solid #1f2e38;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      max-width: 400px;
+      width: 90%;
+      padding: 32px;
+      border-radius: 32px;
+      text-align: center;
+    }
+    .modal-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #1f5e3a;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border: 1px solid #ddd;
+      border-radius: 60px;
+    }
+    .modal-content button {
+      background: #2b7a4b;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 60px;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+    .close-modal {
+      margin-top: 16px;
+      background: transparent;
+      color: #777;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      z-index: 1050;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      animation: pulse-glow 1.8s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20b859;
+      box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
+    }
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+      70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    @media (max-width: 640px) {
+      .whatsapp-float { width: 52px; height: 52px; font-size: 1.7rem; bottom: 20px; right: 20px; }
+    }
+    @media (max-width: 780px) {
+      .container { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .form-grid { flex-direction: column; }
+      .grievance-hero h1 { font-size: 2rem; }
+      .brand img { width: 60px; height: 60px; }
+      .notify-live-text { font-size: 1rem; }
+      .footer-grid { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="brand">
+      <img src="Images/logo.jpeg" alt="Netify Living Logo" onerror="this.src='https://placehold.co/72x72/0b2b3b/7ccf9c?text=NL'">
+      <span class="notify-live-text">NETIFY LIVE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">Aboutus</a></li>
+      <li><a href="amenities.html">Amenities</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="#" id="signInBtnNav" class="signin-btn"><i class="fas fa-user-circle"></i> Sign In</a></li>
+    </ul>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<ul class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="aboutus.html">Aboutus</a></li>
+  <li><a href="amenities.html">Amenities</a></li>
+  <li><a href="experiences.html">Experiences</a></li>
+  <li><a href="#" id="mobileSignInBtn" class="mobile-signin"><i class="fas fa-user-circle"></i> Sign In</a></li>
+</ul>
+
+<main>
+  <section class="grievance-hero">
+    <div class="container">
+      <span class="hero-badge"><i class="fas fa-scale-balanced"></i> PG & Hostel Grievance Redressal</span>
+      <h1>Your Voice, Our Priority <br> Safe & Transparent Living</h1>
+      <p>At Netify Living, we believe every resident deserves a comfortable, respectful PG/hostel experience. Raise your concerns regarding accommodation, meals, security, or community conduct — we resolve them within 7 working days.</p>
+      <p><i class="fas fa-shield-alt" style="color:#2b7a4b;"></i> Dedicated support for all our PG residents across Bangalore, Mumbai, Hyderabad & Chennai.</p>
+    </div>
+  </section>
+
+  <section class="grievance-form-section">
+    <div class="container">
+      <div class="form-grid">
+        <div class="form-container">
+          <div class="form-title">
+            <i class="fas fa-file-alt"></i> 
+            <span>Lodge a Grievance (PG / Hostel Issue)</span>
+          </div>
+          <div id="successMsg" class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <div><strong>Grievance lodged successfully!</strong><br>Our resident relations team will reach out within 48 hours. Reference ID will be shared via email.</div>
+          </div>
+          <form id="grievanceForm">
+            <div class="input-group">
+              <label>Full Name <span>*</span></label>
+              <input type="text" id="fullName" placeholder="Enter your full name" autocomplete="name">
+              <div id="nameError" class="error-msg"></div>
+            </div>
+            <div class="input-group">
+              <label>Email Address <span>*</span></label>
+              <input type="email" id="email" placeholder="Registered email (must end with @gmail.com)">
+              <div id="emailErrorForm" class="error-msg"></div>
+            </div>
+            <div class="input-group">
+              <label>Phone / WhatsApp <span>*</span></label>
+              <input type="tel" id="phone" placeholder="10-digit mobile number (starts with 6-9)">
+              <div id="phoneError" class="error-msg"></div>
+            </div>
+            <div class="input-group">
+              <label>Select PG / Hostel Location <span>*</span></label>
+              <select id="location">
+                <option value="">-- Select your property --</option>
+                <option value="Koramangala">Netify Elite - Koramangala (Bangalore)</option>
+                <option value="Indiranagar">Netify Hub - Indiranagar (Bangalore)</option>
+                <option value="HSR Layout">Netify HSR Layout (Bangalore)</option>
+                <option value="Mumbai">Netify Andheri - Mumbai</option>
+                <option value="Hyderabad">Netify Gachibowli - Hyderabad</option>
+                <option value="Chennai">Netify OMR - Chennai</option>
+              </select>
+              <div id="locationError" class="error-msg"></div>
+            </div>
+            <div class="input-group">
+              <label>Room / Block Number (Optional - for faster resolution)</label>
+              <input type="text" id="roomNumber" placeholder="e.g., Block A, Room 204">
+              <div id="roomError" class="error-msg"></div>
+            </div>
+            <div class="input-group">
+              <label>Category of Grievance <span>*</span></label>
+              <div class="radio-group" id="categoryGroup">
+                <label><input type="radio" name="category" value="Maintenance"> 🛠️ Maintenance / Repairs</label>
+                <label><input type="radio" name="category" value="Food & Meals"> 🍽️ Food & Meals Quality</label>
+                <label><input type="radio" name="category" value="Safety & Security"> 🔒 Safety / Security</label>
+                <label><input type="radio" name="category" value="Roommate/Community"> 👥 Roommate / Community Issue</label>
+                <label><input type="radio" name="category" value="Billing/Deposit"> 💰 Billing / Deposit / Rent</label>
+                <label><input type="radio" name="category" value="Other"> 📌 Other</label>
+              </div>
+              <div id="categoryError" class="error-msg"></div>
+            </div>
+            <div class="input-group">
+              <label>Describe your concern <span>*</span></label>
+              <textarea rows="4" id="message" placeholder="Please provide details about your PG/hostel issue (e.g., unresolved maintenance, meal inconsistency, safety concerns, visitor policy violation etc.)"></textarea>
+              <div id="messageError" class="error-msg"></div>
+            </div>
+            <div class="input-group">
+              <label>Preferred resolution time (Optional - helps us prioritize)</label>
+              <select id="urgency">
+                <option value="Normal">Normal (5-7 days)</option>
+                <option value="Urgent">Urgent (within 48 hours)</option>
+                <option value="Critical">Critical (immediate attention)</option>
+              </select>
+            </div>
+            <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Submit Grievance</button>
+          </form>
+        </div>
+
+        <div class="info-sidebar">
+          <div class="info-card">
+            <h3><i class="fas fa-clock"></i> Grievance Resolution Timeline</h3>
+            <div class="timeline-steps">
+              <div class="step"><div class="step-number">1</div><div class="step-text">Acknowledgment within 24 hours via email/SMS</div></div>
+              <div class="step"><div class="step-number">2</div><div class="step-text">Warden / PG Manager reviews & escalates if needed</div></div>
+              <div class="step"><div class="step-number">3</div><div class="step-text">Resolution committed within 7 working days for most PG matters</div></div>
+              <div class="step"><div class="step-number">4</div><div class="step-text">Escalation to Area Manager if dissatisfaction persists</div></div>
+            </div>
+          </div>
+          <div class="info-card">
+            <h3><i class="fas fa-building-user"></i> Grievance Officer (PG Ombudsman)</h3>
+            <div class="grievance-officer">
+              <h4>Mr. Ankit Sharma</h4>
+              <p><i class="fas fa-envelope"></i> grievance@netifyliving.com</p>
+              <p><i class="fas fa-phone-alt"></i> +91 8041234567 (Mon-Sat, 10AM-6PM)</p>
+              <p><i class="fas fa-map-marker-alt"></i> Corporate Office: 3rd Floor, Colive Hub, Indiranagar, Bangalore - 560038</p>
+              <small style="display:block; margin-top:10px;">For unresolved PG/hostel concerns after raising with property manager, residents may contact directly.</small>
+            </div>
+          </div>
+          <div class="info-card">
+            <h3><i class="fas fa-hand-holding-heart"></i> PG Resident Rights</h3>
+            <p>✔️ Safe & hygienic living spaces with 24/7 support<br>
+            ✔️ Transparent billing & refund policy (as per PG agreement)<br>
+            ✔️ Respectful conduct from staff & co-residents<br>
+            ✔️ Escalation matrix: Property Manager → Area Manager → Grievance Cell<br>
+            ✔️ Zero tolerance for harassment or security lapses in our hostels</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>About Us</h4><ul><li><a href="ourstory.html">Our Story</a></li><li><a href="careers.html">Careers</a></li><li><a href="press.html">Press</a></li><li><a href="sustainability.html">Sustainability</a></li></ul></div>
+      <div class="footer-col"><h4>Cities</h4><ul><li><a href="bangalore.html">Bangalore</a></li><li><a href="mumbai.html">Mumbai</a></li><li><a href="hyderabad.html">Hyderabad</a></li><li><a href="chennai.html">Chennai</a></li></ul></div>
+      <div class="footer-col"><h4>Explore</h4><ul><li><a href="findpg.html">Find PG</a></li><li><a href="offers.html">Offers</a></li><li><a href="Virtualtour.html">Virtual Tour</a></li><li><a href="rooms.html">Rooms</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="helpcenter.html">Help Center</a></li><li><a href="safetyguide.html">Safety Guide</a></li><li><a href="contactus.html">Contact Us</a></li><li><a href="grievance.html" style="color:#7ccf9c;">Grievance Redressal</a></li></ul></div>
+      <div class="footer-col"><h4>Community</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="stories.html">Stories</a></li><li><a href="events.html">Events</a></li><li><a href="refer.html">Refer & Earn</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="grievance.html">Grievance Officer</a></li><li><a href="rera.html">RERA</a></li></ul></div>
+    </div>
+    <div class="social-icons">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Netify Living — Premium PG & Coliving Spaces. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="signinModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-key"></i> Sign In</h3>
+    <input type="email" id="loginEmail" placeholder="Email address">
+    <div id="modalEmailError" class="error-msg"></div>
+    <input type="password" id="loginPassword" placeholder="Password (min 6 chars)">
+    <div id="modalPassError" class="error-msg"></div>
+    <button id="submitSignIn">Sign In</button>
+    <button class="close-modal" id="closeModalBtn">Cancel</button>
+  </div>
+</div>
+
+<a href="https://wa.me/919876543210?text=Hello%20Netify%20Living%2C%20I%20have%20a%20grievance%20regarding%20my%20PG%2Fhostel%20stay.%20Please%20assist." class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+  // Mobile Menu
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  function openMenu() { mobileMenu.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { mobileMenu.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', closeMenu));
+
+  // Sign In Modal
+  const modal = document.getElementById('signinModal');
+  const signInBtns = document.querySelectorAll('#signInBtnNav, #mobileSignInBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const submitSignIn = document.getElementById('submitSignIn');
+  const loginEmail = document.getElementById('loginEmail');
+  const loginPassword = document.getElementById('loginPassword');
+  const modalEmailError = document.getElementById('modalEmailError');
+  const modalPassError = document.getElementById('modalPassError');
+  function openModal(e) { e.preventDefault(); modal.style.display = 'flex'; }
+  function closeModalFunc() { modal.style.display = 'none'; modalEmailError.innerText = ''; modalPassError.innerText = ''; loginEmail.value = ''; loginPassword.value = ''; }
+  signInBtns.forEach(btn => btn.addEventListener('click', openModal));
+  closeModalBtn.addEventListener('click', closeModalFunc);
+  window.addEventListener('click', (e) => { if(e.target === modal) closeModalFunc(); });
+  function validateEmailFormat(email) { return /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/.test(email); }
+  submitSignIn.addEventListener('click', () => {
+    let valid = true;
+    const email = loginEmail.value.trim();
+    const pwd = loginPassword.value.trim();
+    modalEmailError.innerText = ''; modalPassError.innerText = '';
+    if(!email) { modalEmailError.innerText = 'Email required'; valid = false; }
+    else if(!validateEmailFormat(email)) { modalEmailError.innerText = 'Valid email required'; valid = false; }
+    if(!pwd) { modalPassError.innerText = 'Password required'; valid = false; }
+    else if(pwd.length < 6) { modalPassError.innerText = 'Min 6 characters'; valid = false; }
+    if(valid) { alert(`✅ Welcome back to Netify Living PG! (Demo sign-in)`); closeModalFunc(); }
+  });
+
+  // Grievance Form Validation (with all required fixes)
+  const form = document.getElementById('grievanceForm');
+  const successDiv = document.getElementById('successMsg');
+  const fullNameInput = document.getElementById('fullName');
+  const emailInput = document.getElementById('email');
+  const phoneInput = document.getElementById('phone');
+  const locationSelect = document.getElementById('location');
+  const categoryRadios = document.querySelectorAll('input[name="category"]');
+  const messageTextarea = document.getElementById('message');
+  const nameErrorSpan = document.getElementById('nameError');
+  const emailErrorSpan = document.getElementById('emailErrorForm');
+  const phoneErrorSpan = document.getElementById('phoneError');
+  const locationErrorSpan = document.getElementById('locationError');
+  const categoryErrorSpan = document.getElementById('categoryError');
+  const messageErrorSpan = document.getElementById('messageError');
+
+  // Helper: trim leading spaces on input/blur
+  function trimLeadingSpaces(e) { e.target.value = e.target.value.replace(/^\s+/, ''); }
+  fullNameInput.addEventListener('blur', trimLeadingSpaces);
+  emailInput.addEventListener('blur', trimLeadingSpaces);
+  phoneInput.addEventListener('blur', trimLeadingSpaces);
+  fullNameInput.addEventListener('input', function(e) { this.value = this.value.replace(/^\s+/, ''); });
+  emailInput.addEventListener('input', function(e) { this.value = this.value.replace(/^\s+/, ''); });
+  phoneInput.addEventListener('input', function(e) { this.value = this.value.replace(/^\s+/, ''); });
+
+  // Clear category error when any radio is selected
+  categoryRadios.forEach(radio => {
+    radio.addEventListener('change', () => { categoryErrorSpan.innerText = ''; });
+  });
+
+  // Clear message error on input
+  messageTextarea.addEventListener('input', () => { messageErrorSpan.innerText = ''; });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let isValid = true;
+    nameErrorSpan.innerText = ''; emailErrorSpan.innerText = ''; phoneErrorSpan.innerText = '';
+    locationErrorSpan.innerText = ''; categoryErrorSpan.innerText = ''; messageErrorSpan.innerText = '';
+    successDiv.style.display = 'none';
+
+    // Full Name validation (no digits/special chars, no empty, trimmed)
+    let nameVal = fullNameInput.value;
+    nameVal = nameVal.trim();
+    if(!nameVal) { nameErrorSpan.innerText = 'Full name is required'; isValid = false; }
+    else if(/[^a-zA-Z\s]/.test(nameVal)) { nameErrorSpan.innerText = 'Name cannot contain digits or special characters'; isValid = false; }
+
+    // Email validation: must end with @gmail.com, no spaces, valid format
+    let emailVal = emailInput.value.trim();
+    if(!emailVal) { emailErrorSpan.innerText = 'Email address is required'; isValid = false; }
+    else if(!emailVal.toLowerCase().endsWith('@gmail.com')) { emailErrorSpan.innerText = 'Email must end with @gmail.com'; isValid = false; }
+    else if(emailVal.includes(' ')) { emailErrorSpan.innerText = 'Email cannot contain spaces'; isValid = false; }
+
+    // Phone validation: exactly 10 digits, starts with 6-9
+    let phoneVal = phoneInput.value.trim();
+    if(!phoneVal) { phoneErrorSpan.innerText = 'Mobile number is required'; isValid = false; }
+    else if(!/^[6-9]\d{9}$/.test(phoneVal)) { phoneErrorSpan.innerText = 'Mobile number must start with 6-9 and be exactly 10 digits'; isValid = false; }
+
+    // Location validation
+    if(!locationSelect.value) { locationErrorSpan.innerText = 'Please select your PG/hostel location'; isValid = false; }
+
+    // Category validation
+    let categorySelected = false;
+    categoryRadios.forEach(radio => { if(radio.checked) categorySelected = true; });
+    if(!categorySelected) { categoryErrorSpan.innerText = 'Please select a grievance category'; isValid = false; }
+
+    // Message validation
+    let msgVal = messageTextarea.value.trim();
+    if(!msgVal) { messageErrorSpan.innerText = 'Please describe your concern regarding PG/hostel'; isValid = false; }
+    else if(msgVal.length < 10) { messageErrorSpan.innerText = 'Please provide more details (min 10 characters)'; isValid = false; }
+
+    if(isValid) {
+      successDiv.style.display = 'flex';
+      form.reset();
+      setTimeout(() => { successDiv.style.display = 'none'; }, 5000);
+      window.scrollTo({ top: successDiv.offsetTop - 100, behavior: 'smooth' });
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Netify Living | Sustainability - Green Coliving & Eco-Friendly PG Hostels</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefefe;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .navbar, .footer {
+      background: #0b2b3b;
+    }
+    .footer {
+      background: #0a1c2a;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .brand img { 
+      width: 72px;
+      height: 72px;
+      object-fit: cover; 
+      border-radius: 14px;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: #fff;
+      transition: transform 0.2s ease;
+    }
+    .brand img:hover {
+      transform: scale(1.02);
+    }
+
+    .notify-live-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7ccf9c 0%, #2b7a4b 60%, #3f9c66 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+      padding-left: 6px;
+      border-left: 2.5px solid #7ccf9c;
+      margin-left: 4px;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .notify-live-text i {
+      font-size: 0.9rem;
+      color: #7ccf9c;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #7ccf9c;
+      margin-right: 5px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #eef2f5;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #7ccf9c;
+    }
+
+    .signin-btn {
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c !important;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .signin-btn:hover {
+      background: #2b7a4b;
+      border-color: #2b7a4b;
+      color: white !important;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #eef2f5;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: 0.2s;
+      z-index: 200;
+    }
+    .hamburger:hover {
+      color: #7ccf9c;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #0a1c2a;
+      z-index: 1000;
+      box-shadow: -8px 0 25px rgba(0,0,0,0.3);
+      transition: right 0.3s ease-in-out;
+      padding: 85px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      list-style: none;
+    }
+    .mobile-menu.active {
+      right: 0;
+    }
+    .mobile-menu li {
+      list-style: none;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #eef2f5;
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(124,207,156,0.2);
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover {
+      color: #7ccf9c;
+      padding-left: 8px;
+    }
+    .mobile-signin {
+      margin-top: 20px;
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c;
+      text-align: center;
+      border-radius: 40px;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .mobile-signin:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .close-menu {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #eef2f5;
+      cursor: pointer;
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    .menu-overlay.active {
+      display: block;
+    }
+
+    .sustainability-hero {
+      background: linear-gradient(135deg, #e8f3ec 0%, #ffffff 100%);
+      padding: 70px 0 60px;
+      border-bottom: 1px solid #d4e8da;
+    }
+    .sustainability-header {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+    .sustainability-badge {
+      background: #2b7a4b;
+      color: white;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .sustainability-header h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #1a2c3e;
+      line-height: 1.2;
+    }
+    .sustainability-header .lead {
+      font-size: 1.2rem;
+      color: #4a5b6b;
+      max-width: 720px;
+      margin: 0 auto 20px;
+    }
+    .highlight {
+      color: #2b7a4b;
+      font-weight: 600;
+    }
+
+    .impact-section {
+      padding: 60px 0 40px;
+      background: white;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      text-align: center;
+      color: #5d6f7f;
+      max-width: 650px;
+      margin: 0 auto 48px auto;
+    }
+    .impact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+    .impact-card {
+      background: linear-gradient(145deg, #f9fefb, #ffffff);
+      border-radius: 28px;
+      padding: 32px 24px;
+      text-align: center;
+      flex: 1;
+      min-width: 200px;
+      max-width: 260px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+      border: 1px solid #d4e8da;
+    }
+    .impact-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #2b7a4b;
+      margin-bottom: 12px;
+    }
+    .impact-label {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .impact-desc {
+      font-size: 0.8rem;
+      color: #5d6f7f;
+    }
+
+    .initiatives-section {
+      background: #f9fafc;
+      padding: 70px 0;
+    }
+    .initiatives-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+    .initiative-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      flex: 1;
+      min-width: 300px;
+      max-width: 380px;
+      transition: all 0.25s;
+      border: 1px solid #e2efe8;
+    }
+    .initiative-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(43, 122, 75, 0.12);
+    }
+    .initiative-icon {
+      background: #eef6f2;
+      padding: 32px;
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2b7a4b;
+    }
+    .initiative-content {
+      padding: 24px;
+    }
+    .initiative-content h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .initiative-content p {
+      color: #5d6f7f;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .initiative-tag {
+      display: inline-block;
+      background: #e9f4ef;
+      color: #2b7a4b;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .sustainable-living {
+      padding: 70px 0;
+      background: white;
+    }
+    .living-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      align-items: center;
+    }
+    .living-text {
+      flex: 1.2;
+    }
+    .living-text h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #1f3b2c;
+    }
+    .living-text p {
+      margin-bottom: 18px;
+      color: #2c3e4e;
+      line-height: 1.6;
+    }
+    .living-list {
+      list-style: none;
+      margin-top: 24px;
+    }
+    .living-list li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .living-list i {
+      color: #2b7a4b;
+      font-size: 1.2rem;
+    }
+    .living-image {
+      flex: 1;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+    }
+    .living-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .commitment-section {
+      background: linear-gradient(145deg, #eef6f2, #ffffff);
+      padding: 70px 0;
+      margin: 20px 0;
+    }
+    .goals-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .goal-card {
+      background: white;
+      border-radius: 24px;
+      padding: 28px;
+      text-align: center;
+      flex: 1;
+      min-width: 260px;
+      max-width: 320px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: 0.2s;
+    }
+    .goal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+    }
+    .goal-year {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #2b7a4b;
+      margin-bottom: 16px;
+    }
+    .goal-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    .goal-card p {
+      font-size: 0.85rem;
+      color: #5d6f7f;
+    }
+
+    .join-movement {
+      background: #1f2e3a;
+      padding: 70px 0;
+      border-radius: 48px;
+      margin: 40px 0 60px;
+    }
+    .join-content {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .join-content h2 {
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .join-content p {
+      color: #cddfe7;
+      margin-bottom: 32px;
+    }
+    .join-btn {
+      background: white;
+      color: #1f5e3a;
+      padding: 14px 36px;
+      border-radius: 40px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .join-btn:hover {
+      background: #e9f4ef;
+      transform: scale(0.98);
+    }
+
+    .footer {
+      background: #0a1c2a;
+      color: #adb7c2;
+      padding: 48px 0 24px;
+      margin-top: 20px;
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .footer-col {
+      flex: 1;
+      min-width: 140px;
+    }
+    .footer-col h4 {
+      color: #eef2f5;
+      font-weight: 600;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+    .footer-col a {
+      text-decoration: none;
+      color: #b9c4ce;
+      transition: color 0.2s;
+      font-size: 0.85rem;
+    }
+    .footer-col a:hover {
+      color: #7ccf9c;
+    }
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 30px 0 20px;
+    }
+    .social-icons a {
+      background: #1f2e38;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #cddfe7;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+    .social-icons a:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .footer-bottom {
+      border-top: 1px solid #1f2e38;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      z-index: 1050;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      animation: pulse-glow 1.8s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20b859;
+      box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
+    }
+    @keyframes pulse-glow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+      }
+      70% {
+        box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+    @media (max-width: 640px) {
+      .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        font-size: 1.7rem;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      max-width: 520px;
+      width: 90%;
+      padding: 36px 32px;
+      border-radius: 32px;
+      text-align: left;
+    }
+    .modal-content h3 {
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+      color: #1f5e3a;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      color: #1a2c3e;
+    }
+    .form-group label .required {
+      color: #e53e3e;
+      margin-left: 4px;
+    }
+    .modal-content input, .modal-content textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+    }
+    .modal-content input:focus, .modal-content textarea:focus {
+      outline: none;
+      border-color: #2b7a4b;
+    }
+    .modal-content textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .modal-content button {
+      background: #2b7a4b;
+      color: white;
+      border: none;
+      padding: 14px;
+      width: 100%;
+      border-radius: 60px;
+      font-weight: 700;
+      margin-top: 16px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .modal-content button:hover {
+      background: #1f5e3a;
+    }
+    .close-modal {
+      margin-top: 12px;
+      background: transparent !important;
+      color: #777 !important;
+      border: 1px solid #ddd !important;
+      padding: 12px !important;
+    }
+    .close-modal:hover {
+      background: #f5f5f5 !important;
+      color: #333 !important;
+    }
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.7rem;
+      margin-top: 5px;
+      display: block;
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 24px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .brand img {
+        width: 60px;
+        height: 60px;
+      }
+      .notify-live-text {
+        font-size: 1rem;
+      }
+      .sustainability-header h1 {
+        font-size: 2.2rem;
+      }
+      .living-grid {
+        flex-direction: column;
+      }
+      .footer-grid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-col {
+        text-align: center;
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+    @media (max-width: 480px) {
+      .notify-live-text {
+        font-size: 0.85rem;
+      }
+      .brand img {
+        width: 52px;
+        height: 52px;
+      }
+      .sustainability-header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="brand">
+      <img src="Images/logo.jpeg" alt="Netify Living Logo" onerror="this.src='https://placehold.co/72x72/0b2b3b/7ccf9c?text=NL'">
+      <span class="notify-live-text">NETIFY LIVE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">Aboutus</a></li>
+      <li><a href="amenities.html">Amenities</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="#" id="signInBtnNav" class="signin-btn"><i class="fas fa-user-circle"></i> Sign In</a></li>
+    </ul>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<ul class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="aboutus.html">Aboutus</a></li>
+  <li><a href="amenities.html">Amenities</a></li>
+  <li><a href="experiences.html">Experiences</a></li>
+  <li><a href="#" id="mobileSignInBtn" class="mobile-signin"><i class="fas fa-user-circle"></i> Sign In</a></li>
+</ul>
+
+<main>
+  <section class="sustainability-hero">
+    <div class="container">
+      <div class="sustainability-header">
+        <span class="sustainability-badge"><i class="fas fa-leaf"></i> Green Coliving</span>
+        <h1>Building a <span class="highlight">Sustainable Future</span> for PG Hostels & Coliving</h1>
+        <p class="lead">At Netify Living, we believe that comfortable living shouldn't come at the cost of our planet. Our commitment to eco-friendly practices is redefining what it means to be a responsible PG hostel chain.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="impact-section">
+    <div class="container">
+      <h2 class="section-title">Our Environmental Impact</h2>
+      <p class="section-sub">Making a difference, one coliving space at a time</p>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-number">45%</div>
+          <div class="impact-label">Reduced Energy Use</div>
+          <div class="impact-desc">Across all PG properties since</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">12,500</div>
+          <div class="impact-label">Waste Recycled</div>
+          <div class="impact-desc">Annually from our coliving spaces</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">35+</div>
+          <div class="impact-label">Solar-Powered PGs</div>
+          <div class="impact-desc">Properties running on renewable</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-number">200+</div>
+          <div class="impact-label">CO₂ Offset</div>
+          <div class="impact-desc">Through green initiatives</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="initiatives-section">
+    <div class="container">
+      <h2 class="section-title">Eco-Initiatives Across Our PG Hostels</h2>
+      <p class="section-sub">Innovative green practices integrated into every coliving space</p>
+      <div class="initiatives-grid">
+        <div class="initiative-card">
+          <div class="initiative-icon"><i class="fas fa-solar-panel"></i></div>
+          <div class="initiative-content">
+            <h3>Solar-Powered Properties</h3>
+            <p>35+ PG locations now powered by rooftop solar panels, reducing dependency on grid electricity and lowering carbon footprint.</p>
+            <span class="initiative-tag">40% Energy Savings</span>
+          </div>
+        </div>
+        <div class="initiative-card">
+          <div class="initiative-icon"><i class="fas fa-water"></i></div>
+          <div class="initiative-content">
+            <h3>Water Conservation</h3>
+            <p>Rainwater harvesting systems and low-flow fixtures across all coliving spaces. 30% reduction in water consumption.</p>
+            <span class="initiative-tag">1.2M Liters Saved/Year</span>
+          </div>
+        </div>
+        <div class="initiative-card">
+          <div class="initiative-icon"><i class="fas fa-recycle"></i></div>
+          <div class="initiative-content">
+            <h3>Zero-Waste Coliving</h3>
+            <p>Comprehensive waste segregation, composting organic waste, and recycling programs for residents in every PG hostel.</p>
+            <span class="initiative-tag">85% Waste Diversion</span>
+          </div>
+        </div>
+        <div class="initiative-card">
+          <div class="initiative-icon"><i class="fas fa-tree"></i></div>
+          <div class="initiative-content">
+            <h3>Urban Greening</h3>
+            <p>Vertical gardens, rooftop farms, and indoor plants across our properties improving air quality and resident wellbeing.</p>
+            <span class="initiative-tag">5,000+ Plants Installed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sustainable-living">
+    <div class="container">
+      <div class="living-grid">
+        <div class="living-text">
+          <h2><i class="fas fa-hand-holding-heart" style="color: #2b7a4b;"></i> Sustainable Living at Netify</h2>
+          <p>Our PG hostels are designed to inspire eco-conscious habits among residents. From energy-efficient lighting to smart building management systems, every detail matters.</p>
+          <ul class="living-list">
+            <li><i class="fas fa-check-circle"></i> LED lighting with motion sensors in common areas</li>
+            <li><i class="fas fa-check-circle"></i> Smart HVAC systems for optimal energy use</li>
+            <li><i class="fas fa-check-circle"></i> Biodegradable cleaning products across all properties</li>
+            <li><i class="fas fa-check-circle"></i> Digital-first operations reducing paper waste by 95%</li>
+            <li><i class="fas fa-check-circle"></i> Electric vehicle charging stations at select locations</li>
+          </ul>
+        </div>
+        <div class="living-image">
+          <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80" alt="Sustainable coliving space">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="commitment-section">
+    <div class="container">
+      <h2 class="section-title">Our Sustainability Roadmap</h2>
+      <p class="section-sub">Ambitious goals for a greener future in PG and coliving spaces</p>
+      <div class="goals-grid">
+        <div class="goal-card">
+          <div class="goal-year">2026</div>
+          <h3>Net-Zero Water</h3>
+          <p>Achieve water neutrality across all Netify properties through recycling and rainwater.</p>
+        </div>
+        <div class="goal-card">
+          <div class="goal-year">2028</div>
+          <h3>100% Renewable</h3>
+          <p>Transition all coliving spaces to solar and renewable energy sources.</p>
+        </div>
+        <div class="goal-card">
+          <div class="goal-year">2030</div>
+          <h3>Carbon Neutrality</h3>
+          <p>Become India's first carbon-neutral PG hostel chain through offsets and green initiatives.</p>
+        </div>
+        <div class="goal-card">
+          <div class="goal-year">2032</div>
+          <h3>Zero Waste Certified</h3>
+          <p>Achieve zero-waste certification across all coliving properties of hostels.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="join-movement">
+      <div class="join-content">
+        <h2><i class="fas fa-leaf"></i> Be Part of the Green Coliving Movement</h2>
+        <p>Every resident at Netify Living contributes to our sustainability journey. From composting workshops to energy-saving challenges, join us in making eco-friendly living the new standard for PG hostels in India.</p>
+        <button class="join-btn" id="joinMovementBtn"><i class="fas fa-hand-peace"></i> Learn How You Can Contribute</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>About Us</h4><ul><li><a href="ourstory.html">Our Story</a></li><li><a href="careers.html">Careers</a></li><li><a href="press.html">Press</a></li><li><a href="sustainability.html">Sustainability</a></li></ul></div>
+      <div class="footer-col"><h4>Cities</h4><ul><li><a href="bangalore.html">Bangalore</a></li><li><a href="mumbai.html">Mumbai</a></li><li><a href="hyderabad.html">Hyderabad</a></li><li><a href="chennai.html">Chennai</a></li></ul></div>
+      <div class="footer-col"><h4>Explore</h4><ul><li><a href="findpg.html">Find PG</a></li><li><a href="offers.html">Offers</a></li><li><a href="Virtualtour.html">Virtual Tour</a></li><li><a href="rooms.html">Rooms</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="helpcenter.html">Help Center</a></li><li><a href="safetyguide.html">Safety Guide</a></li><li><a href="contactus.html">Contact Us</a></li><li><a href="refundpolicy.html">Refund Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Community</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="stories.html">Stories</a></li><li><a href="events.html">Events</a></li><li><a href="refer.html">Refer & Earn</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="grievance.html">Grievance</a></li><li><a href="rera.html">RERA</a></li></ul></div>
+    </div>
+    
+    <div class="social-icons">
+      <a href="http://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="http://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="http://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="http://www.twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    
+    <div class="footer-bottom">
+      <span>© 2025 Netify Living — Premium Coliving Spaces. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919876543210?text=Hello%20Netify%20Living%2C%20I'm%20interested%20in%20your%20premium%20PG%20spaces!" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<div id="joinModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-seedling"></i> Join Our Green Movement</h3>
+    <div class="form-group"><label>Full Name <span class="required">*</span></label><input type="text" id="joinName" placeholder="Enter your full name"><span id="joinNameError" class="error-msg"></span></div>
+    <div class="form-group"><label>Email Address <span class="required">*</span></label><input type="email" id="joinEmail" placeholder="you@gmail.com"><span id="joinEmailError" class="error-msg"></span></div>
+    <div class="form-group"><label>Your Message / Contribution Idea (Optional)</label><textarea id="joinMessage" placeholder="Tell us how you'd like to contribute to sustainable coliving..."></textarea></div>
+    <button id="submitJoin">Get Involved</button>
+    <button class="close-modal" id="closeJoinModal">Cancel</button>
+  </div>
+</div>
+
+<div id="signinModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-key"></i> Sign In</h3>
+    <input type="email" id="loginEmail" placeholder="Email address" autocomplete="email">
+    <div id="emailError" class="error-msg"></div>
+    <input type="password" id="loginPassword" placeholder="Password (min 6 chars)">
+    <div id="passError" class="error-msg"></div>
+    <button id="submitSignIn">Sign In</button>
+    <button class="close-modal" id="closeModalBtn">Cancel</button>
+  </div>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  function openMenu() { mobileMenu.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { mobileMenu.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  const mobileLinks = document.querySelectorAll('.mobile-menu a');
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  const signinModal = document.getElementById('signinModal');
+  const signInBtns = document.querySelectorAll('#signInBtnNav, #mobileSignInBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const submitSignIn = document.getElementById('submitSignIn');
+  const loginEmail = document.getElementById('loginEmail');
+  const loginPassword = document.getElementById('loginPassword');
+  const emailErrorSpan = document.getElementById('emailError');
+  const passErrorSpan = document.getElementById('passError');
+
+  function openSigninModal(e) { e.preventDefault(); signinModal.style.display = 'flex'; }
+  function closeSigninModal() { signinModal.style.display = 'none'; emailErrorSpan.innerText = ''; passErrorSpan.innerText = ''; loginEmail.value = ''; loginPassword.value = ''; }
+  signInBtns.forEach(btn => btn.addEventListener('click', openSigninModal));
+  closeModalBtn.addEventListener('click', closeSigninModal);
+  window.addEventListener('click', (e) => { if(e.target === signinModal) closeSigninModal(); });
+  
+  function validateEmail(email) { const re = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/; return re.test(email); }
+  
+  function isValidGmail(email) {
+    const trimmedEmail = email.trim();
+    if (trimmedEmail.length === 0) return false;
+    const gmailRegex = /^[a-zA-Z0-9][a-zA-Z0-9._%+-]*@gmail\.com$/;
+    return gmailRegex.test(trimmedEmail);
+  }
+  
+  function isValidName(name) {
+    const trimmedName = name.trim();
+    if (trimmedName.length === 0) return false;
+    const nameRegex = /^[A-Za-z\s]+$/;
+    return nameRegex.test(trimmedName);
+  }
+  
+  submitSignIn.addEventListener('click', () => {
+    let isValid = true;
+    const email = loginEmail.value.trim();
+    const password = loginPassword.value.trim();
+    emailErrorSpan.innerText = '';
+    passErrorSpan.innerText = '';
+    if(!email) { emailErrorSpan.innerText = 'Email is required'; isValid = false; }
+    else if(!validateEmail(email)) { emailErrorSpan.innerText = 'Enter a valid email'; isValid = false; }
+    if(!password) { passErrorSpan.innerText = 'Password is required'; isValid = false; }
+    else if(password.length < 6) { passErrorSpan.innerText = 'Password must be at least 6 characters'; isValid = false; }
+    if(isValid) { alert(`✅ Welcome to Netify Sustainability! (Demo sign-in for ${email})`); closeSigninModal(); }
+  });
+
+  const joinModal = document.getElementById('joinModal');
+  const joinMovementBtn = document.getElementById('joinMovementBtn');
+  const closeJoinModal = document.getElementById('closeJoinModal');
+  const submitJoin = document.getElementById('submitJoin');
+  const joinName = document.getElementById('joinName');
+  const joinEmail = document.getElementById('joinEmail');
+  const joinMessage = document.getElementById('joinMessage');
+  const joinNameError = document.getElementById('joinNameError');
+  const joinEmailError = document.getElementById('joinEmailError');
+
+  function openJoinModal() { joinModal.style.display = 'flex'; }
+  function closeJoinModalFunc() { joinModal.style.display = 'none'; joinName.value = ''; joinEmail.value = ''; joinMessage.value = ''; joinNameError.innerText = ''; joinEmailError.innerText = ''; }
+  
+  joinMovementBtn.addEventListener('click', openJoinModal);
+  closeJoinModal.addEventListener('click', closeJoinModalFunc);
+  window.addEventListener('click', (e) => { if(e.target === joinModal) closeJoinModalFunc(); });
+
+  submitJoin.addEventListener('click', () => {
+    let isValid = true;
+    const name = joinName.value;
+    const email = joinEmail.value;
+    
+    joinNameError.innerText = '';
+    joinEmailError.innerText = '';
+    
+    if(!name || name.trim() === '') { joinNameError.innerText = 'Full name is required'; isValid = false; }
+    else if(!isValidName(name)) { joinNameError.innerText = 'Name should only contain letters and spaces (no numbers or special characters, no leading/trailing spaces)'; isValid = false; }
+    
+    if(!email || email.trim() === '') { joinEmailError.innerText = 'Email address is required'; isValid = false; }
+    else if(!isValidGmail(email)) { joinEmailError.innerText = 'Email must end with "@gmail.com" (e.g., username@gmail.com)'; isValid = false; }
+    
+    if(isValid) {
+      alert(`🌱 Thank you ${name.trim()}! You've joined the Netify Green Movement. We'll share sustainability tips and upcoming initiatives at ${email.trim()}. Together, let's make coliving greener!`);
+      closeJoinModalFunc();
+    }
+  });
+</script>
+</body>
+</html>

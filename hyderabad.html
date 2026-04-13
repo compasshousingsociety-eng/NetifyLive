@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Netify Living | Hyderabad - Premium PG & Coliving Branches</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefefe;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .navbar, .footer {
+      background: #0b2b3b;
+    }
+    .footer {
+      background: #0a1c2a;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .brand img { 
+      width: 72px;
+      height: 72px;
+      object-fit: cover; 
+      border-radius: 14px;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: #fff;
+      transition: transform 0.2s ease;
+    }
+    .brand img:hover {
+      transform: scale(1.02);
+    }
+
+    .notify-live-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7ccf9c 0%, #2b7a4b 60%, #3f9c66 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+      padding-left: 6px;
+      border-left: 2.5px solid #7ccf9c;
+      margin-left: 4px;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .notify-live-text i {
+      font-size: 0.9rem;
+      color: #7ccf9c;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #7ccf9c;
+      margin-right: 5px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #eef2f5;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #7ccf9c;
+    }
+
+    .signin-btn {
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c !important;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .signin-btn:hover {
+      background: #2b7a4b;
+      border-color: #2b7a4b;
+      color: white !important;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #eef2f5;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: 0.2s;
+      z-index: 200;
+    }
+    .hamburger:hover {
+      color: #7ccf9c;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #0a1c2a;
+      z-index: 1000;
+      box-shadow: -8px 0 25px rgba(0,0,0,0.3);
+      transition: right 0.3s ease-in-out;
+      padding: 85px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      list-style: none;
+    }
+    .mobile-menu.active {
+      right: 0;
+    }
+    .mobile-menu li {
+      list-style: none;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #eef2f5;
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(124,207,156,0.2);
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover {
+      color: #7ccf9c;
+      padding-left: 8px;
+    }
+    .mobile-signin {
+      margin-top: 20px;
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c;
+      text-align: center;
+      border-radius: 40px;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .mobile-signin:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .close-menu {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #eef2f5;
+      cursor: pointer;
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    .menu-overlay.active {
+      display: block;
+    }
+
+    .location-hero {
+      background: linear-gradient(135deg, #eef2f0 0%, #ffffff 100%);
+      padding: 60px 0 50px;
+      border-bottom: 1px solid #e2efe8;
+    }
+    .location-header {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+    .location-badge {
+      background: #2b7a4b;
+      color: white;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .location-header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a2c3e;
+    }
+    .location-header .lead {
+      font-size: 1.1rem;
+      color: #4a5b6b;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .city-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #2b7a4b;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: #5d6f7f;
+    }
+
+    .branch-filter {
+      padding: 40px 0 20px;
+      background: white;
+    }
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1.5px solid #d4e2da;
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #4a5b6b;
+    }
+    .filter-btn.active {
+      background: #2b7a4b;
+      border-color: #2b7a4b;
+      color: white;
+    }
+    .filter-btn:hover:not(.active) {
+      border-color: #2b7a4b;
+      color: #2b7a4b;
+    }
+
+    .branches-section {
+      padding: 40px 0 70px;
+      background: #f9fafc;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      text-align: center;
+      color: #5d6f7f;
+      max-width: 650px;
+      margin: 0 auto 48px auto;
+    }
+    .branches-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+    .branch-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      flex: 1;
+      min-width: 320px;
+      max-width: 380px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+      border: 1px solid #eaf3ee;
+    }
+    .branch-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(43, 122, 75, 0.15);
+    }
+    .branch-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .branch-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #2b7a4b;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .branch-content {
+      padding: 24px;
+    }
+    .branch-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a2c3e;
+    }
+    .branch-location {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #2b7a4b;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+    .branch-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2b7a4b;
+      margin: 12px 0 8px;
+    }
+    .branch-price span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #5d6f7f;
+    }
+    .branch-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .branch-amenities span {
+      background: #f1f5f9;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      color: #2c3e4e;
+    }
+    .branch-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #eef2f0;
+    }
+    .branch-distance {
+      font-size: 0.8rem;
+      color: #5d6f7f;
+    }
+    .branch-btn {
+      background: transparent;
+      border: 1.5px solid #2b7a4b;
+      color: #2b7a4b;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .branch-btn:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+
+    .why-hyderabad {
+      padding: 70px 0;
+      background: white;
+    }
+    .why-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      align-items: center;
+    }
+    .why-text {
+      flex: 1.2;
+    }
+    .why-text h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #1f3b2c;
+    }
+    .why-text p {
+      margin-bottom: 18px;
+      color: #2c3e4e;
+      line-height: 1.6;
+    }
+    .why-list {
+      list-style: none;
+      margin-top: 24px;
+    }
+    .why-list li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .why-list i {
+      color: #2b7a4b;
+      font-size: 1.2rem;
+    }
+    .why-image {
+      flex: 1;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+    }
+    .why-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #1f2e3a, #0a1c2a);
+      margin: 40px 0 60px;
+      border-radius: 48px;
+      padding: 52px 40px;
+    }
+    .cta-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .cta-text h2 {
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .cta-text p {
+      color: #cddfe7;
+      margin-top: 10px;
+    }
+    .cta-btn {
+      background: white;
+      color: #1f5e3a;
+      padding: 18px 42px;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: 0.2s;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .cta-btn:hover {
+      background: #e9f4ef;
+      transform: scale(0.98);
+    }
+
+    .footer {
+      background: #0a1c2a;
+      color: #adb7c2;
+      padding: 48px 0 24px;
+      margin-top: 20px;
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .footer-col {
+      flex: 1;
+      min-width: 140px;
+    }
+    .footer-col h4 {
+      color: #eef2f5;
+      font-weight: 600;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+    .footer-col a {
+      text-decoration: none;
+      color: #b9c4ce;
+      transition: color 0.2s;
+      font-size: 0.85rem;
+    }
+    .footer-col a:hover {
+      color: #7ccf9c;
+    }
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 30px 0 20px;
+    }
+    .social-icons a {
+      background: #1f2e38;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #cddfe7;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+    .social-icons a:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .footer-bottom {
+      border-top: 1px solid #1f2e38;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      max-width: 520px;
+      width: 90%;
+      padding: 36px 32px;
+      border-radius: 32px;
+      text-align: left;
+    }
+    .modal-content h3 {
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+      color: #1f5e3a;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      color: #1a2c3e;
+    }
+    .form-group label .required {
+      color: #e53e3e;
+      margin-left: 4px;
+    }
+    .modal-content input, .modal-content select, .modal-content textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+      background: white;
+    }
+    .modal-content input:focus, .modal-content select:focus, .modal-content textarea:focus {
+      outline: none;
+      border-color: #2b7a4b;
+    }
+    .modal-content textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .modal-content button {
+      background: #2b7a4b;
+      color: white;
+      border: none;
+      padding: 14px;
+      width: 100%;
+      border-radius: 60px;
+      font-weight: 700;
+      margin-top: 16px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .modal-content button:hover {
+      background: #1f5e3a;
+    }
+    .close-modal {
+      margin-top: 12px;
+      background: transparent !important;
+      color: #777 !important;
+      border: 1px solid #ddd !important;
+      padding: 12px !important;
+    }
+    .close-modal:hover {
+      background: #f5f5f5 !important;
+      color: #333 !important;
+    }
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.7rem;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      z-index: 1050;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      animation: pulse-glow 1.8s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20b859;
+      box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
+    }
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+      70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    @media (max-width: 640px) {
+      .whatsapp-float { width: 52px; height: 52px; font-size: 1.7rem; bottom: 20px; right: 20px; }
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 24px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .brand img {
+        width: 60px;
+        height: 60px;
+      }
+      .notify-live-text {
+        font-size: 1rem;
+      }
+      .location-header h1 {
+        font-size: 2rem;
+      }
+      .why-grid {
+        flex-direction: column;
+      }
+      .footer-grid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-col {
+        text-align: center;
+        width: 100%;
+        max-width: 280px;
+      }
+      .cta-flex {
+        flex-direction: column;
+        text-align: center;
+      }
+      .branch-card {
+        min-width: 280px;
+      }
+    }
+    @media (max-width: 480px) {
+      .notify-live-text {
+        font-size: 0.85rem;
+      }
+      .brand img {
+        width: 52px;
+        height: 52px;
+      }
+      .branch-card {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="brand">
+      <img src="Images/logo.jpeg" alt="Netify Living Logo" onerror="this.src='https://placehold.co/72x72/0b2b3b/7ccf9c?text=NL'">
+      <span class="notify-live-text">NETIFY LIVE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">Aboutus</a></li>
+      <li><a href="amenities.html">Amenities</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="#" id="signInBtnNav" class="signin-btn"><i class="fas fa-user-circle"></i> Sign In</a></li>
+    </ul>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<ul class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="aboutus.html">Aboutus</a></li>
+  <li><a href="amenities.html">Amenities</a></li>
+  <li><a href="experiences.html">Experiences</a></li>
+  <li><a href="#" id="mobileSignInBtn" class="mobile-signin"><i class="fas fa-user-circle"></i> Sign In</a></li>
+</ul>
+
+<main>
+  <section class="location-hero">
+    <div class="container">
+      <div class="location-header">
+        <span class="location-badge"><i class="fas fa-charmander"></i> City of Pearls | Tech Hub</span>
+        <h1>Netify Living in <span style="color: #2b7a4b;">Hyderabad</span></h1>
+        <p class="lead">Premium PG and coliving spaces across Hyderabad's most vibrant neighborhoods. Find your perfect home in the city of Nizams and global tech giants.</p>
+        <div class="city-stats">
+          <div class="stat-item"><div class="stat-number">8+</div><div class="stat-label">PG Branches</div></div>
+          <div class="stat-item"><div class="stat-number">1,500+</div><div class="stat-label">Happy Residents</div></div>
+          <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Prime Locations</div></div>
+          <div class="stat-item"><div class="stat-number">4.9⭐</div><div class="stat-label">Resident Rating</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="branch-filter">
+    <div class="container">
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Branches</button>
+        <button class="filter-btn" data-filter="gachibowli">Gachibowli</button>
+        <button class="filter-btn" data-filter="hitech-city">Hi-Tech City</button>
+        <button class="filter-btn" data-filter="madhapur">Madhapur</button>
+        <button class="filter-btn" data-filter="kondapur">Kondapur</button>
+        <button class="filter-btn" data-filter="secunderabad">Secunderabad</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="branches-section">
+    <div class="container">
+      <h2 class="section-title">Our Hyderabad Branches</h2>
+      <p class="section-sub">Explore premium coliving spaces designed for students and professionals in Hyderabad's tech corridor</p>
+      <div class="branches-grid" id="branchesGrid"></div>
+    </div>
+  </section>
+
+  <section class="why-hyderabad">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-text">
+          <h2><i class="fas fa-heart" style="color: #2b7a4b;"></i> Why Choose Hyderabad?</h2>
+          <p>Hyderabad is India's emerging tech capital, home to global giants like Google, Microsoft, Amazon, and a thriving startup ecosystem. Our PG hostels are strategically located near major IT hubs, educational institutions, and cultural landmarks.</p>
+          <ul class="why-list">
+            <li><i class="fas fa-check-circle"></i> Close to tech hubs: Gachibowli, Hi-Tech City, Financial District</li>
+            <li><i class="fas fa-check-circle"></i> Excellent connectivity with Hyderabad Metro and MMTS trains</li>
+            <li><i class="fas fa-check-circle"></i> Famous for biryani, nightlife, and cultural heritage</li>
+            <li><i class="fas fa-check-circle"></i> Home to top institutions: IIIT Hyderabad, BITS Pilani, IITH</li>
+            <li><i class="fas fa-check-circle"></i> Affordable cost of living with premium amenities</li>
+          </ul>
+        </div>
+        <div class="why-image">
+          <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Hyderabad City">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="cta-section">
+      <div class="cta-flex">
+        <div class="cta-text">
+          <h2>Find Your Perfect PG in Hyderabad</h2>
+          <p>Book a virtual tour or visit our nearest branch today</p>
+        </div>
+        <button class="cta-btn" id="scheduleTourBtn"><i class="fas fa-calendar-check"></i> Schedule a Tour</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>About Us</h4><ul><li><a href="ourstory.html">Our Story</a></li><li><a href="careers.html">Careers</a></li><li><a href="press.html">Press</a></li><li><a href="sustainability.html">Sustainability</a></li></ul></div>
+      <div class="footer-col"><h4>Cities</h4><ul><li><a href="bangalore.html">Bangalore</a></li><li><a href="mumbai.html">Mumbai</a></li><li><a href="hyderabad.html">Hyderabad</a></li><li><a href="chennai.html">Chennai</a></li></ul></div>
+      <div class="footer-col"><h4>Explore</h4><ul><li><a href="findpg.html">Find PG</a></li><li><a href="offers.html">Offers</a></li><li><a href="Virtualtour.html">Virtual Tour</a></li><li><a href="rooms.html">Rooms</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="helpcenter.html">Help Center</a></li><li><a href="safetyguide.html">Safety Guide</a></li><li><a href="contactus.html">Contact Us</a></li><li><a href="refundpolicy.html">Refund Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Community</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="stories.html">Stories</a></li><li><a href="events.html">Events</a></li><li><a href="refer.html">Refer & Earn</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="grievance.html">Grievance</a></li><li><a href="rera.html">RERA</a></li></ul></div>
+    </div>
+    
+    <div class="social-icons">
+      <a href="http://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="http://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="http://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="http://www.twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    
+    <div class="footer-bottom">
+      <span>© 2025 Netify Living — Premium Coliving Spaces. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919876543210?text=Hello%20Netify%20Living%2C%20I'm%20interested%20in%20your%20Hyderabad%20PG%20branches.%20Please%20share%20details." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<div id="tourModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-calendar-alt"></i> Schedule a Tour</h3>
+    <div class="form-group"><label>Full Name <span class="required">*</span></label><input type="text" id="tourName" placeholder="Enter your full name"><span id="tourNameError" class="error-msg"></span></div>
+    <div class="form-group"><label>Email Address <span class="required">*</span></label><input type="email" id="tourEmail" placeholder="you@gmail.com"><span id="tourEmailError" class="error-msg"></span></div>
+    <div class="form-group"><label>Mobile Number <span class="required">*</span></label><input type="tel" id="tourPhone" placeholder="10-digit mobile number (starts with 6-9)"><span id="tourPhoneError" class="error-msg"></span></div>
+    <div class="form-group"><label>Select Branch <span class="required">*</span></label><select id="tourBranch"><option value="">Select Branch</option><option value="Gachibowli">Netify Gachibowli - Financial District</option><option value="Hi-Tech City">Netify Hi-Tech City - Cyber Towers</option><option value="Madhapur">Netify Madhapur - Durgam Cheruvu</option><option value="Kondapur">Netify Kondapur - Botanical Garden</option><option value="Secunderabad">Netify Secunderabad - Paradise Circle</option><option value="Kukatpally">Netify Kukatpally - JNTU</option><option value="Manikonda">Netify Manikonda - Lanco Hills</option></select><span id="tourBranchError" class="error-msg"></span></div>
+    <button id="submitTour">Book Virtual Tour</button>
+    <button class="close-modal" id="closeTourModal">Cancel</button>
+  </div>
+</div>
+
+<div id="signinModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-key"></i> Sign In</h3>
+    <input type="email" id="loginEmail" placeholder="Email address" autocomplete="email">
+    <div id="emailError" class="error-msg"></div>
+    <input type="password" id="loginPassword" placeholder="Password (min 6 chars)">
+    <div id="passError" class="error-msg"></div>
+    <button id="submitSignIn">Sign In</button>
+    <button class="close-modal" id="closeModalBtn">Cancel</button>
+  </div>
+</div>
+
+<script>
+  const branches = [
+    { id: 1, name: "Netify Gachibowli - Financial District", location: "Gachibowli", area: "Financial District", price: "₹16,999", priceSuffix: "/month", distance: "5 min from Wipro & Microsoft", amenities: ["WiFi", "Meals", "Gym", "AC", "Parking"], image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", tag: "Popular", filter: "gachibowli" },
+    { id: 2, name: "Netify Hi-Tech City - Cyber Towers", location: "Hi-Tech City", area: "Cyber Towers Road", price: "₹18,500", priceSuffix: "/month", distance: "3 min from Cyber Towers", amenities: ["WiFi", "Café", "Cowork", "AC", "Gym"], image: "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", tag: "Premium", filter: "hitech-city" },
+    { id: 3, name: "Netify Madhapur - Durgam Cheruvu", location: "Madhapur", area: "Near Durgam Cheruvu", price: "₹17,500", priceSuffix: "/month", distance: "5 min from Inorbit Mall", amenities: ["WiFi", "Meals", "Rooftop", "AC", "Security"], image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", tag: "Trending", filter: "madhapur" },
+    { id: 4, name: "Netify Kondapur - Botanical", location: "Kondapur", area: "Near Botanical Garden", price: "₹15,999", priceSuffix: "/month", distance: "8 min from Google Office", amenities: ["WiFi", "Meals", "Gym", "Transport", "Laundry"], image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80", tag: "Budget Friendly", filter: "kondapur" },
+    { id: 5, name: "Netify Secunderabad - Paradise", location: "Secunderabad", area: "Parade Ground", price: "₹13,999", priceSuffix: "/month", distance: "2 min from Paradise Circle", amenities: ["WiFi", "Meals", "Gym", "AC", "Parking"], image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", tag: "Heritage Location", filter: "secunderabad" },
+    { id: 6, name: "Netify Gachibowli - IIIT", location: "Gachibowli", area: "Near IIIT Hyderabad", price: "₹15,500", priceSuffix: "/month", distance: "3 min from IIIT Campus", amenities: ["WiFi", "Meals", "Gym", "AC", "Study Room"], image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", tag: "Student Favorite", filter: "gachibowli" },
+    { id: 7, name: "Netify Madhapur - Image", location: "Madhapur", area: "Near Image Hospital", price: "₹17,999", priceSuffix: "/month", distance: "7 min from DLF", amenities: ["WiFi", "Café", "Gym", "AC", "Cowork"], image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80", tag: "Luxury", filter: "madhapur" },
+    { id: 8, name: "Netify Hi-Tech City - JNTU", location: "Hi-Tech City", area: "Near JNTU", price: "₹14,999", priceSuffix: "/month", distance: "10 min from JNTU", amenities: ["WiFi", "Meals", "Gym", "Parking", "Cleaning"], image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", tag: "Student Hub", filter: "hitech-city" },
+    { id: 9, name: "Netify Kukatpally - JNTU", location: "Kukatpally", area: "Nizampet Road", price: "₹12,999", priceSuffix: "/month", distance: "15 min from JNTU", amenities: ["WiFi", "Meals", "Gym", "AC", "Parking"], image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", tag: "Value Pick", filter: "kondapur" },
+    { id: 10, name: "Netify Manikonda - Lanco Hills", location: "Manikonda", area: "Lanco Hills Road", price: "₹16,500", priceSuffix: "/month", distance: "8 min from Lanco Hills", amenities: ["WiFi", "Meals", "Gym", "AC", "Rooftop"], image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", tag: "Scenic View", filter: "gachibowli" }
+  ];
+
+  function renderBranches(filter = "all") {
+    const grid = document.getElementById('branchesGrid');
+    const filteredBranches = filter === "all" ? branches : branches.filter(b => b.filter === filter);
+    
+    if (filteredBranches.length === 0) {
+      grid.innerHTML = '<div style="text-align:center; padding:60px;"><i class="fas fa-search" style="font-size:3rem; color:#2b7a4b;"></i><p style="margin-top:20px;">No branches found in this area. Explore other locations!</p></div>';
+      return;
+    }
+    
+    grid.innerHTML = filteredBranches.map(branch => `
+      <div class="branch-card" data-branch-name="${branch.name}">
+        <div class="branch-image" style="background-image: url('${branch.image}');">
+          <span class="branch-tag">${branch.tag}</span>
+        </div>
+        <div class="branch-content">
+          <h3 class="branch-name">${branch.name}</h3>
+          <div class="branch-location"><i class="fas fa-map-pin"></i> ${branch.area}, ${branch.location}</div>
+          <div class="branch-price">${branch.price}<span> ${branch.priceSuffix}</span></div>
+          <div class="branch-amenities">
+            ${branch.amenities.slice(0,4).map(a => `<span><i class="fas fa-check-circle"></i> ${a}</span>`).join('')}
+          </div>
+          <div class="branch-details">
+            <span class="branch-distance"><i class="fas fa-location-dot"></i> ${branch.distance}</span>
+            <button class="branch-btn" data-branch="${branch.name}">View Details</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    
+    document.querySelectorAll('.branch-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const branchName = btn.getAttribute('data-branch');
+        alert(`🏠 ${branchName}\n\nFor more details including room availability, virtual tour, and special offers, please contact our Hyderabad team at +91 40 1234 5678 or schedule a tour.`);
+      });
+    });
+  }
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      renderBranches(filter);
+    });
+  });
+
+  renderBranches("all");
+
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  function openMenu() { mobileMenu.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { mobileMenu.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', closeMenu));
+
+  const signinModal = document.getElementById('signinModal');
+  const signInBtns = document.querySelectorAll('#signInBtnNav, #mobileSignInBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const submitSignIn = document.getElementById('submitSignIn');
+  const loginEmail = document.getElementById('loginEmail');
+  const loginPassword = document.getElementById('loginPassword');
+  const emailErrorSpan = document.getElementById('emailError');
+  const passErrorSpan = document.getElementById('passError');
+
+  function openSigninModal(e) { e.preventDefault(); signinModal.style.display = 'flex'; }
+  function closeSigninModal() { signinModal.style.display = 'none'; emailErrorSpan.innerText = ''; passErrorSpan.innerText = ''; loginEmail.value = ''; loginPassword.value = ''; }
+  signInBtns.forEach(btn => btn.addEventListener('click', openSigninModal));
+  closeModalBtn.addEventListener('click', closeSigninModal);
+  window.addEventListener('click', (e) => { if(e.target === signinModal) closeSigninModal(); });
+  
+  function validateEmail(email) { const re = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/; return re.test(email); }
+  function isValidGmail(email) {
+    const trimmedEmail = email.trim();
+    if (trimmedEmail.length === 0) return false;
+    const gmailRegex = /^[a-zA-Z0-9][a-zA-Z0-9._%+-]*@gmail\.com$/;
+    return gmailRegex.test(trimmedEmail);
+  }
+  function isValidName(name) {
+    const trimmedName = name.trim();
+    if (trimmedName.length === 0) return false;
+    const nameRegex = /^[A-Za-z\s]+$/;
+    return nameRegex.test(trimmedName);
+  }
+  function isValidPhone(phone) {
+    const trimmedPhone = phone.trim();
+    if (trimmedPhone.length === 0) return false;
+    const phoneRegex = /^[6-9][0-9]{9}$/;
+    return phoneRegex.test(trimmedPhone);
+  }
+  
+  submitSignIn.addEventListener('click', () => {
+    let isValid = true;
+    const email = loginEmail.value.trim();
+    const password = loginPassword.value.trim();
+    emailErrorSpan.innerText = '';
+    passErrorSpan.innerText = '';
+    if(!email) { emailErrorSpan.innerText = 'Email is required'; isValid = false; }
+    else if(!validateEmail(email)) { emailErrorSpan.innerText = 'Enter a valid email'; isValid = false; }
+    if(!password) { passErrorSpan.innerText = 'Password is required'; isValid = false; }
+    else if(password.length < 6) { passErrorSpan.innerText = 'Password must be at least 6 characters'; isValid = false; }
+    if(isValid) { alert(`✅ Welcome to Netify Hyderabad! (Demo sign-in for ${email})`); closeSigninModal(); }
+  });
+
+  const tourModal = document.getElementById('tourModal');
+  const scheduleTourBtn = document.getElementById('scheduleTourBtn');
+  const closeTourModal = document.getElementById('closeTourModal');
+  const submitTour = document.getElementById('submitTour');
+  const tourName = document.getElementById('tourName');
+  const tourEmail = document.getElementById('tourEmail');
+  const tourPhone = document.getElementById('tourPhone');
+  const tourBranch = document.getElementById('tourBranch');
+  const tourNameError = document.getElementById('tourNameError');
+  const tourEmailError = document.getElementById('tourEmailError');
+  const tourPhoneError = document.getElementById('tourPhoneError');
+  const tourBranchError = document.getElementById('tourBranchError');
+
+  function openTourModal() { tourModal.style.display = 'flex'; }
+  function closeTourModalFunc() { tourModal.style.display = 'none'; tourName.value = ''; tourEmail.value = ''; tourPhone.value = ''; tourBranch.value = ''; tourNameError.innerText = ''; tourEmailError.innerText = ''; tourPhoneError.innerText = ''; tourBranchError.innerText = ''; }
+  
+  scheduleTourBtn.addEventListener('click', openTourModal);
+  closeTourModal.addEventListener('click', closeTourModalFunc);
+  window.addEventListener('click', (e) => { if(e.target === tourModal) closeTourModalFunc(); });
+
+  submitTour.addEventListener('click', () => {
+    let isValid = true;
+    const name = tourName.value;
+    const email = tourEmail.value;
+    const phone = tourPhone.value;
+    const branch = tourBranch.value;
+    
+    tourNameError.innerText = '';
+    tourEmailError.innerText = '';
+    tourPhoneError.innerText = '';
+    tourBranchError.innerText = '';
+    
+    if(!name || name.trim() === '') { tourNameError.innerText = 'Full name is required'; isValid = false; }
+    else if(!isValidName(name)) { tourNameError.innerText = 'Name should only contain letters and spaces (no numbers or special characters)'; isValid = false; }
+    
+    if(!email || email.trim() === '') { tourEmailError.innerText = 'Email address is required'; isValid = false; }
+    else if(!isValidGmail(email)) { tourEmailError.innerText = 'Email must end with "@gmail.com" (e.g., username@gmail.com)'; isValid = false; }
+    
+    if(!phone || phone.trim() === '') { tourPhoneError.innerText = 'Mobile number is required'; isValid = false; }
+    else if(!isValidPhone(phone)) { tourPhoneError.innerText = 'Mobile number must be 10 digits and start with 6, 7, 8, or 9 (no spaces or special characters)'; isValid = false; }
+    
+    if(!branch) { tourBranchError.innerText = 'Please select a branch'; isValid = false; }
+    
+    if(isValid) {
+      alert(`🎉 Thank you ${name.trim()}! Your tour request for ${branch} has been received. Our Hyderabad team will contact you at ${phone.trim()} within 24 hours to confirm your virtual/physical tour.`);
+      closeTourModalFunc();
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Amenities | Netify Living - Premium PG & Coliving Spaces</title>
+  <!-- Google Fonts + simple reset & modern styling -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefefe;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* Unified navbar & footer background - dark blue (same as index) */
+    .navbar, .footer {
+      background: #0b2b3b;
+    }
+    .footer {
+      background: #0a1c2a;
+    }
+
+    /* brand container */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .brand img { 
+      width: 72px;
+      height: 72px;
+      object-fit: cover; 
+      border-radius: 14px;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: #fff;
+      transition: transform 0.2s ease;
+    }
+    .brand img:hover {
+      transform: scale(1.02);
+    }
+
+    .notify-live-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7ccf9c 0%, #2b7a4b 60%, #3f9c66 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+      padding-left: 6px;
+      border-left: 2.5px solid #7ccf9c;
+      margin-left: 4px;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .notify-live-text i {
+      font-size: 0.9rem;
+      color: #7ccf9c;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #7ccf9c;
+      margin-right: 5px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #eef2f5;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #7ccf9c;
+    }
+
+    .signin-btn {
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c !important;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .signin-btn:hover {
+      background: #2b7a4b;
+      border-color: #2b7a4b;
+      color: white !important;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #eef2f5;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: 0.2s;
+      z-index: 200;
+    }
+    .hamburger:hover {
+      color: #7ccf9c;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #0a1c2a;
+      z-index: 1000;
+      box-shadow: -8px 0 25px rgba(0,0,0,0.3);
+      transition: right 0.3s ease-in-out;
+      padding: 85px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      list-style: none;
+    }
+    .mobile-menu.active {
+      right: 0;
+    }
+    .mobile-menu li {
+      list-style: none;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #eef2f5;
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(124,207,156,0.2);
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover {
+      color: #7ccf9c;
+      padding-left: 8px;
+    }
+    .mobile-signin {
+      margin-top: 20px;
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c;
+      text-align: center;
+      border-radius: 40px;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .mobile-signin:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .close-menu {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #eef2f5;
+      cursor: pointer;
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    .menu-overlay.active {
+      display: block;
+    }
+
+    /* Amenities Page Specific Styles */
+    .amenities-hero {
+      background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+      padding: 70px 0 60px;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .amenities-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .amenities-badge {
+      background: #e9f4ef;
+      color: #1f5e3a;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .amenities-header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #1a2c3e;
+    }
+
+    .amenities-header h1 span {
+      color: #2b7a4b;
+    }
+
+    .amenities-header p {
+      font-size: 1.1rem;
+      color: #5d6f7f;
+      line-height: 1.6;
+    }
+
+    /* Category Sections */
+    .category-section {
+      padding: 70px 0;
+    }
+
+    .category-section:nth-child(even) {
+      background: #f9fafc;
+    }
+
+    .category-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1a2c3e;
+    }
+
+    .category-sub {
+      text-align: center;
+      color: #5d6f7f;
+      max-width: 650px;
+      margin: 0 auto 48px auto;
+    }
+
+    .amenities-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+
+    .amenity-card {
+      background: white;
+      border-radius: 24px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #edf2f7;
+      flex: 1;
+      min-width: 260px;
+      max-width: 320px;
+    }
+
+    .amenity-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px -12px rgba(43, 122, 75, 0.15);
+      border-color: #7ccf9c;
+    }
+
+    .amenity-icon {
+      width: 80px;
+      height: 80px;
+      background: #eef6f2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: #2b7a4b;
+    }
+
+    .amenity-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #1a2c3e;
+    }
+
+    .amenity-card p {
+      color: #5d6f7f;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .amenity-tag {
+      display: inline-block;
+      background: #e9f4ef;
+      color: #2b7a4b;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Premium Features Banner */
+    .premium-banner {
+      background: linear-gradient(135deg, #0a1c2a 0%, #0b2b3b 100%);
+      padding: 70px 0;
+      color: white;
+      text-align: center;
+    }
+
+    .premium-banner h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .premium-banner p {
+      color: #cddfe7;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .premium-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .premium-feature {
+      text-align: center;
+      min-width: 200px;
+    }
+
+    .premium-feature i {
+      font-size: 2.5rem;
+      color: #7ccf9c;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .premium-feature h4 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .premium-feature p {
+      font-size: 0.85rem;
+      color: #b9c4ce;
+      margin: 0;
+    }
+
+    /* Room Types Section */
+    .room-section {
+      padding: 70px 0;
+      background: #ffffff;
+    }
+
+    .room-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .room-card {
+      background: #f9fafc;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid #edf2f7;
+      flex: 1;
+      min-width: 280px;
+      max-width: 350px;
+    }
+
+    .room-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+    }
+
+    .room-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .room-content {
+      padding: 24px;
+    }
+
+    .room-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: #1a2c3e;
+    }
+
+    .room-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .room-features span {
+      font-size: 0.8rem;
+      color: #5d6f7f;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .room-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #2b7a4b;
+      margin: 12px 0;
+    }
+
+    .room-btn {
+      display: inline-block;
+      background: transparent;
+      border: 1.5px solid #2b7a4b;
+      color: #2b7a4b;
+      padding: 10px 24px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      margin-top: 12px;
+    }
+
+    .room-btn:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 70px 0;
+      background: linear-gradient(135deg, #e9f4ef 0%, #ffffff 100%);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      color: #1a2c3e;
+    }
+
+    .cta-section p {
+      color: #5d6f7f;
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #2b7a4b;
+      color: white;
+      padding: 14px 36px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: #1f5e3a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px -12px rgba(43, 122, 75, 0.4);
+    }
+
+    /* Footer Styles - matching index exactly */
+    .footer {
+      background: #0a1c2a;
+      color: #adb7c2;
+      padding: 48px 0 24px;
+      margin-top: 0;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .footer-col h4 {
+      color: #eef2f5;
+      font-weight: 600;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: #b9c4ce;
+      transition: color 0.2s;
+      font-size: 0.85rem;
+    }
+
+    .footer-col a:hover {
+      color: #7ccf9c;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 30px 0 20px;
+    }
+
+    .social-icons a {
+      background: #1f2e38;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #cddfe7;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+
+    .social-icons a:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1f2e38;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 400px;
+      width: 90%;
+      padding: 32px;
+      border-radius: 32px;
+      text-align: center;
+      box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+    }
+
+    .modal-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #1f5e3a;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border: 1px solid #ddd;
+      border-radius: 60px;
+      font-size: 1rem;
+    }
+
+    .modal-content button {
+      background: #2b7a4b;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 60px;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+
+    .close-modal {
+      margin-top: 16px;
+      background: transparent;
+      color: #777;
+      border: none;
+      cursor: pointer;
+    }
+
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.75rem;
+      margin-top: -8px;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    /* ---------- WHATSAPP FLOATING BUTTON (right side bottom) - same as index ---------- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      z-index: 1050;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      animation: pulse-glow 1.8s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20b859;
+      box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
+    }
+    @keyframes pulse-glow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+      }
+      70% {
+        box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+    @media (max-width: 640px) {
+      .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        font-size: 1.7rem;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 24px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .nav-container {
+        justify-content: space-between;
+      }
+      .brand img {
+        width: 60px;
+        height: 60px;
+      }
+      .amenities-header h1 {
+        font-size: 2.2rem;
+      }
+      .category-title {
+        font-size: 1.6rem;
+      }
+      .footer-grid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-col {
+        text-align: center;
+        width: 100%;
+        max-width: 280px;
+      }
+      .premium-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .notify-live-text {
+        font-size: 0.85rem;
+      }
+      .brand img {
+        width: 52px;
+        height: 52px;
+      }
+      .amenities-header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar - exactly matching index page -->
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="brand">
+      <img src="Images/logo.jpeg" alt="Netify Living Logo" onerror="this.src='https://placehold.co/72x72/0b2b3b/7ccf9c?text=NL'">
+      <span class="notify-live-text">NETIFY LIVE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">Aboutus</a></li>
+      <li><a href="amenities.html" style="color: #7ccf9c;">Amenities</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="#" id="signInBtnNav" class="signin-btn"><i class="fas fa-user-circle"></i> Sign In</a></li>
+    </ul>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="menu-overlay" id="menuOverlay"></div>
+<ul class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="aboutus.html">Aboutus</a></li>
+  <li><a href="amenities.html" style="color: #7ccf9c;">Amenities</a></li>
+  <li><a href="experiences.html">Experiences</a></li>
+  <li><a href="#" id="mobileSignInBtn" class="mobile-signin"><i class="fas fa-user-circle"></i> Sign In</a></li>
+</ul>
+
+<main>
+  <!-- Amenities Hero Section -->
+  <section class="amenities-hero">
+    <div class="container">
+      <div class="amenities-header">
+        <span class="amenities-badge"><i class="fas fa-concierge-bell"></i> Premium Amenities</span>
+        <h1>Everything You Need for <span>Comfortable Living</span></h1>
+        <p>Experience the perfect blend of convenience, luxury, and community with our thoughtfully curated amenities designed specifically for students and working professionals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Living Spaces Category -->
+  <section class="category-section">
+    <div class="container">
+      <h2 class="category-title">🏠 Premium Living Spaces</h2>
+      <p class="category-sub">Thoughtfully designed rooms that feel like home</p>
+      <div class="amenities-grid">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-bed"></i></div>
+          <h3>Comfortable Beds</h3>
+          <p>Orthopedic mattresses with premium linen and bedding - changed weekly.</p>
+          <span class="amenity-tag">Included</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-wind"></i></div>
+          <h3>Air Conditioning</h3>
+          <p>Fully air-conditioned rooms with individual temperature control.</p>
+          <span class="amenity-tag">24/7</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-tshirt"></i></div>
+          <h3>Storage Space</h3>
+          <p>Spacious wardrobes, study tables, and organized storage solutions.</p>
+          <span class="amenity-tag">Ample Space</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-broom"></i></div>
+          <h3>Daily Housekeeping</h3>
+          <p>Professional cleaning services for rooms and common areas.</p>
+          <span class="amenity-tag">Daily Service</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Food & Dining Category -->
+  <section class="category-section">
+    <div class="container">
+      <h2 class="category-title">🍽️ Chef-Crafted Dining</h2>
+      <p class="category-sub">Nutritious, delicious meals prepared fresh daily</p>
+      <div class="amenities-grid">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-utensils"></i></div>
+          <h3>3 Meals + Snacks</h3>
+          <p>Breakfast, lunch, dinner with evening snacks and unlimited tea/coffee.</p>
+          <span class="amenity-tag">All Included</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-apple-alt"></i></div>
+          <h3>Healthy Menu</h3>
+          <p>Balanced, nutritious meals with vegetarian and Jain options available.</p>
+          <span class="amenity-tag">Customizable</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-egg"></i></div>
+          <h3>Live Kitchen</h3>
+          <p>Open kitchen concept with freshly prepared meals throughout the day.</p>
+          <span class="amenity-tag">Fresh Food</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-calendar-alt"></i></div>
+          <h3>Festival Specials</h3>
+          <p>Special menus and celebrations during festivals and events.</p>
+          <span class="amenity-tag">Celebrations</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community & Lifestyle Category -->
+  <section class="category-section">
+    <div class="container">
+      <h2 class="category-title">🎉 Community & Lifestyle</h2>
+      <p class="category-sub">Connect, grow, and thrive in our vibrant community</p>
+      <div class="amenities-grid">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-chalkboard-user"></i></div>
+          <h3>Common Lounge</h3>
+          <p>Spacious common areas for socializing, movie nights, and group activities.</p>
+          <span class="amenity-tag">Community Space</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-dumbbell"></i></div>
+          <h3>Fitness Center</h3>
+          <p>Well-equipped gym with modern equipment and yoga space.</p>
+          <span class="amenity-tag">Free Access</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-gamepad"></i></div>
+          <h3>Recreation Zone</h3>
+          <p>Indoor games like carrom, chess, table tennis, and gaming consoles.</p>
+          <span class="amenity-tag">Fun Activities</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-calendar-week"></i></div>
+          <h3>Events & Workshops</h3>
+          <p>Regular community events, movie nights, and skill development workshops.</p>
+          <span class="amenity-tag">Weekly Events</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety & Security Category -->
+  <section class="category-section">
+    <div class="container">
+      <h2 class="category-title">🛡️ Safety & Security</h2>
+      <p class="category-sub">Your safety is our top priority, 24/7</p>
+      <div class="amenities-grid">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>24/7 Security</h3>
+          <p>Professional security guards and CCTV surveillance throughout the property.</p>
+          <span class="amenity-tag">Round the Clock</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-id-card"></i></div>
+          <h3>Biometric Access</h3>
+          <p>Secure entry with biometric verification for residents only.</p>
+          <span class="amenity-tag">Controlled Access</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-female"></i></div>
+          <h3>Women Safety</h3>
+          <p>Dedicated women's floors with female security staff and strict protocols.</p>
+          <span class="amenity-tag">Priority Safety</span>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fas fa-fire-extinguisher"></i></div>
+          <h3>Fire Safety</h3>
+          <p>Fire alarms, extinguishers, and regular safety drills.</p>
+          <span class="amenity-tag">ISO Certified</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Features Banner -->
+  <section class="premium-banner">
+    <div class="container">
+      <h2>✨ Premium Add-On Services</h2>
+      <p>Elevate your living experience with our exclusive premium services designed for modern lifestyles</p>
+      <div class="premium-features">
+        <div class="premium-feature">
+          <i class="fas fa-wifi"></i>
+          <h4>High-Speed WiFi</h4>
+          <p>100 Mbps dedicated connection</p>
+        </div>
+        <div class="premium-feature">
+          <i class="fas fa-tv"></i>
+          <h4>Smart TVs</h4>
+          <p>LED TVs with streaming apps</p>
+        </div>
+        <div class="premium-feature">
+          <i class="fas fa-mug-hot"></i>
+          <h4>Tea/Coffee Station</h4>
+          <p>Unlimited beverages 24/7</p>
+        </div>
+        <div class="premium-feature">
+          <i class="fas fa-car"></i>
+          <h4>Parking Space</h4>
+          <p>Secure bike & car parking</p>
+        </div>
+        <div class="premium-feature">
+          <i class="fas fa-box"></i>
+          <h4>Laundry Service</h4>
+          <p>Washing machines & ironing</p>
+        </div>
+        <div class="premium-feature">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h4>Medical Support</h4>
+          <p>First-aid & doctor on call</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Room Types Section -->
+  <section class="room-section">
+    <div class="container">
+      <h2 class="category-title">🏘️ Room Configurations</h2>
+      <p class="category-sub">Choose the perfect space that suits your needs and budget</p>
+      <div class="room-grid">
+        <div class="room-card">
+          <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80');"></div>
+          <div class="room-content">
+            <h3>Single Room</h3>
+            <p>Perfect for privacy seekers with personal space and amenities.</p>
+            <div class="room-features">
+              <span><i class="fas fa-bed"></i> Single Bed</span>
+              <span><i class="fas fa-desk"></i> Study Table</span>
+              <span><i class="fas fa-wifi"></i> WiFi</span>
+            </div>
+            <div class="room-price">₹18,999/month</div>
+            <a href="#" class="room-btn">View Details</a>
+          </div>
+        </div>
+        <div class="room-card">
+          <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+          <div class="room-content">
+            <h3>Double Sharing</h3>
+            <p>Ideal for friends and colleagues who prefer company.</p>
+            <div class="room-features">
+              <span><i class="fas fa-bed"></i> 2 Beds</span>
+              <span><i class="fas fa-desk"></i> Study Area</span>
+              <span><i class="fas fa-wifi"></i> WiFi</span>
+            </div>
+            <div class="room-price">₹12,999/month</div>
+            <a href="#" class="room-btn">View Details</a>
+          </div>
+        </div>
+        <div class="room-card">
+          <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+          <div class="room-content">
+            <h3>Triple Sharing</h3>
+            <p>Budget-friendly option with all premium amenities included.</p>
+            <div class="room-features">
+              <span><i class="fas fa-bed"></i> 3 Beds</span>
+              <span><i class="fas fa-desk"></i> Shared Desk</span>
+              <span><i class="fas fa-wifi"></i> WiFi</span>
+            </div>
+            <div class="room-price">₹9,999/month</div>
+            <a href="#" class="room-btn">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Experience Premium Living?</h2>
+      <p>Book a tour today and see our amenities firsthand. Our team will guide you through everything.</p>
+      <a href="#" class="cta-button" id="scheduleBtn"><i class="fas fa-calendar-check"></i> Schedule a Tour</a>
+    </div>
+  </section>
+</main>
+
+<!-- Footer - exactly matching index page with 6 columns -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>About Us</h4><ul><li><a href="ourstory.html">Our Story</a></li><li><a href="careers.html">Careers</a></li><li><a href="press.html">Press</a></li><li><a href="sustainability.html">Sustainability</a></li></ul></div>
+      <div class="footer-col"><h4>Cities</h4><ul><li><a href="bangalore.html">Bangalore</a></li><li><a href="mumbai.html">Mumbai</a></li><li><a href="hyderabad.html">Hyderabad</a></li><li><a href="chennai.html">Chennai</a></li></ul></div>
+      <div class="footer-col"><h4>Explore</h4><ul><li><a href="findpg.html">Find PG</a></li><li><a href="offers.html">Offers</a></li><li><a href="Virtualtour.html">Virtual Tour</a></li><li><a href="rooms.html">Rooms</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="helpcenter.html">Help Center</a></li><li><a href="safetyguide.html">Safety Guide</a></li><li><a href="contactus.html">Contact Us</a></li><li><a href="refundpolicy.html">Refund Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Community</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="stories.html">Stories</a></li><li><a href="events.html">Events</a></li><li><a href="refer.html">Refer & Earn</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="grievance.html">Grievance</a></li><li><a href="rera.html">RERA</a></li></ul></div>
+    </div>
+    
+    <div class="social-icons">
+      <a href="http://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="http://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="http://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="http://www.twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    
+    <div class="footer-bottom">
+      <span>© 2025 Netify Living — Premium Coliving Spaces. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Sign In Modal -->
+<div id="signinModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-key"></i> Sign In</h3>
+    <input type="email" id="loginEmail" placeholder="Email address" autocomplete="email">
+    <div id="emailError" class="error-msg"></div>
+    <input type="password" id="loginPassword" placeholder="Password (min 6 chars)">
+    <div id="passError" class="error-msg"></div>
+    <button id="submitSignIn">Sign In</button>
+    <button class="close-modal" id="closeModalBtn">Cancel</button>
+  </div>
+</div>
+
+<!-- FLOATING WHATSAPP ICON - right side bottom, same as index page -->
+<a href="https://wa.me/919876543210?text=Hello%20Netify%20Living%2C%20I'm%20interested%20in%20your%20premium%20PG%20spaces!" 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Chat with us on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+  // Mobile Menu Functionality
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  
+  function openMenu() { 
+    mobileMenu.classList.add('active'); 
+    overlay.classList.add('active'); 
+    document.body.style.overflow = 'hidden'; 
+  }
+  
+  function closeMenu() { 
+    mobileMenu.classList.remove('active'); 
+    overlay.classList.remove('active'); 
+    document.body.style.overflow = ''; 
+  }
+  
+  hamburger.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  
+  const mobileLinks = document.querySelectorAll('.mobile-menu a');
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  // Sign In Modal Logic
+  const modal = document.getElementById('signinModal');
+  const signInBtns = document.querySelectorAll('#signInBtnNav, #mobileSignInBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const submitBtn = document.getElementById('submitSignIn');
+  const emailInput = document.getElementById('loginEmail');
+  const passwordInput = document.getElementById('loginPassword');
+  const emailError = document.getElementById('emailError');
+  const passError = document.getElementById('passError');
+
+  function openModalFunc(e) { 
+    e.preventDefault(); 
+    modal.style.display = 'flex'; 
+  }
+  
+  function closeModalFunc() { 
+    modal.style.display = 'none'; 
+    emailError.innerText = ''; 
+    passError.innerText = ''; 
+    emailInput.value = ''; 
+    passwordInput.value = ''; 
+  }
+  
+  signInBtns.forEach(btn => btn.addEventListener('click', openModalFunc));
+  closeModalBtn.addEventListener('click', closeModalFunc);
+  window.addEventListener('click', (e) => { if(e.target === modal) closeModalFunc(); });
+  
+  function validateEmail(email) { 
+    const re = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/; 
+    return re.test(email); 
+  }
+  
+  submitBtn.addEventListener('click', () => {
+    let isValid = true;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    emailError.innerText = '';
+    passError.innerText = '';
+    
+    if(!email) { 
+      emailError.innerText = 'Email is required'; 
+      isValid = false; 
+    } else if(!validateEmail(email)) { 
+      emailError.innerText = 'Enter a valid email (e.g., name@example.com)'; 
+      isValid = false; 
+    }
+    
+    if(!password) { 
+      passError.innerText = 'Password is required'; 
+      isValid = false; 
+    } else if(password.length < 6) { 
+      passError.innerText = 'Password must be at least 6 characters'; 
+      isValid = false; 
+    }
+    
+    if(isValid) { 
+      alert(`✅ Welcome back! (Demo sign-in successful for ${email})`); 
+      closeModalFunc(); 
+    }
+  });
+  
+  // CTA Button Alert
+  const scheduleBtn = document.getElementById('scheduleBtn');
+  if(scheduleBtn) {
+    scheduleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('📞 Thank you for your interest! Our team will contact you shortly to schedule a tour of our premium PG properties.');
+    });
+  }
+
+  // Room View Buttons Alert
+  document.querySelectorAll('.room-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('🏠 View room details, virtual tour, and availability. Contact us for more information!');
+    });
+  });
+</script>
+</body>
+</html>

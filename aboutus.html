@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>About Us | Netify Living - Premium PG & Coliving Spaces</title>
+  <!-- Google Fonts + simple reset & modern styling -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefefe;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* Unified navbar & footer background - dark blue (same as index) */
+    .navbar, .footer {
+      background: #0b2b3b; /* dark blue-teal premium shade */
+    }
+    .footer {
+      background: #0a1c2a;
+    }
+
+    /* brand container: bigger logo + NOTIFY LIVE text */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .brand img { 
+      width: 72px;
+      height: 72px;
+      object-fit: cover; 
+      border-radius: 14px;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: #fff;
+      transition: transform 0.2s ease;
+    }
+    .brand img:hover {
+      transform: scale(1.02);
+    }
+
+    .notify-live-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7ccf9c 0%, #2b7a4b 60%, #3f9c66 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+      padding-left: 6px;
+      border-left: 2.5px solid #7ccf9c;
+      margin-left: 4px;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .notify-live-text i {
+      font-size: 0.9rem;
+      color: #7ccf9c;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #7ccf9c;
+      margin-right: 5px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #eef2f5;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #7ccf9c;
+    }
+
+    .signin-btn {
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c !important;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .signin-btn:hover {
+      background: #2b7a4b;
+      border-color: #2b7a4b;
+      color: white !important;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #eef2f5;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: 0.2s;
+      z-index: 200;
+    }
+    .hamburger:hover {
+      color: #7ccf9c;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #0a1c2a;
+      z-index: 1000;
+      box-shadow: -8px 0 25px rgba(0,0,0,0.3);
+      transition: right 0.3s ease-in-out;
+      padding: 85px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      list-style: none;
+    }
+    .mobile-menu.active {
+      right: 0;
+    }
+    .mobile-menu li {
+      list-style: none;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #eef2f5;
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(124,207,156,0.2);
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover {
+      color: #7ccf9c;
+      padding-left: 8px;
+    }
+    .mobile-signin {
+      margin-top: 20px;
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c;
+      text-align: center;
+      border-radius: 40px;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .mobile-signin:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .close-menu {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #eef2f5;
+      cursor: pointer;
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    .menu-overlay.active {
+      display: block;
+    }
+
+    /* About Us Page Specific Styles */
+    .about-hero {
+      background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+      padding: 70px 0 60px;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .about-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-badge {
+      background: #e9f4ef;
+      color: #1f5e3a;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .about-header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #1a2c3e;
+    }
+
+    .about-header h1 span {
+      color: #2b7a4b;
+    }
+
+    .about-header p {
+      font-size: 1.1rem;
+      color: #5d6f7f;
+      line-height: 1.6;
+    }
+
+    .mission-vision {
+      padding: 70px 0;
+      background: #ffffff;
+    }
+
+    .mv-grid {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .mv-card {
+      flex: 1;
+      min-width: 280px;
+      background: #f9fafc;
+      padding: 40px 32px;
+      border-radius: 28px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #edf2f7;
+    }
+
+    .mv-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px -12px rgba(43, 122, 75, 0.15);
+      border-color: #7ccf9c;
+    }
+
+    .mv-icon {
+      width: 80px;
+      height: 80px;
+      background: #eef6f2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2.2rem;
+      color: #2b7a4b;
+    }
+
+    .mv-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      color: #1a2c3e;
+    }
+
+    .mv-card p {
+      color: #5d6f7f;
+      line-height: 1.6;
+    }
+
+    .story-section {
+      padding: 70px 0;
+      background: #f9fafc;
+    }
+
+    .story-grid {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .story-content {
+      flex: 1;
+    }
+
+    .story-content h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #1a2c3e;
+    }
+
+    .story-content p {
+      color: #5d6f7f;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .story-stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #2b7a4b;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #5d6f7f;
+      margin-top: 5px;
+    }
+
+    .story-image {
+      flex: 1;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px -20px rgba(0, 0, 0, 0.2);
+    }
+
+    .story-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .story-image:hover img {
+      transform: scale(1.02);
+    }
+
+    .values-section {
+      padding: 70px 0;
+      background: #ffffff;
+    }
+
+    .values-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .value-card {
+      flex: 1;
+      min-width: 260px;
+      max-width: 320px;
+      background: #fefefe;
+      padding: 32px 24px;
+      border-radius: 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #edf2f7;
+    }
+
+    .value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+      border-color: #7ccf9c;
+    }
+
+    .value-icon {
+      width: 70px;
+      height: 70px;
+      background: #e9f4ef;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+      color: #2b7a4b;
+    }
+
+    .value-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #1a2c3e;
+    }
+
+    .value-card p {
+      color: #5d6f7f;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .team-section {
+      padding: 70px 0;
+      background: #f9fafc;
+    }
+
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .team-card {
+      text-align: center;
+      max-width: 280px;
+    }
+
+    .team-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      border: 4px solid #7ccf9c;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      color: #1a2c3e;
+    }
+
+    .team-card p {
+      color: #2b7a4b;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .team-card .bio {
+      color: #5d6f7f;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .cta-section {
+      padding: 70px 0;
+      background: linear-gradient(135deg, #0a1c2a 0%, #0b2b3b 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: #cddfe7;
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #2b7a4b;
+      color: white;
+      padding: 14px 36px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: #1f5e3a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px -12px rgba(43, 122, 75, 0.4);
+    }
+
+    /* Footer Styles - matching index exactly */
+    .footer {
+      background: #0a1c2a;
+      color: #adb7c2;
+      padding: 48px 0 24px;
+      margin-top: 0;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .footer-col h4 {
+      color: #eef2f5;
+      font-weight: 600;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: #b9c4ce;
+      transition: color 0.2s;
+      font-size: 0.85rem;
+    }
+
+    .footer-col a:hover {
+      color: #7ccf9c;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 30px 0 20px;
+    }
+
+    .social-icons a {
+      background: #1f2e38;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #cddfe7;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+
+    .social-icons a:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1f2e38;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 400px;
+      width: 90%;
+      padding: 32px;
+      border-radius: 32px;
+      text-align: center;
+      box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+    }
+
+    .modal-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #1f5e3a;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border: 1px solid #ddd;
+      border-radius: 60px;
+      font-size: 1rem;
+    }
+
+    .modal-content button {
+      background: #2b7a4b;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 60px;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+
+    .close-modal {
+      margin-top: 16px;
+      background: transparent;
+      color: #777;
+      border: none;
+      cursor: pointer;
+    }
+
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.75rem;
+      margin-top: -8px;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    /* ---------- WHATSAPP FLOATING BUTTON (right side bottom) - same as index ---------- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      z-index: 1050;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      animation: pulse-glow 1.8s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20b859;
+      box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
+    }
+    @keyframes pulse-glow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+      }
+      70% {
+        box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+    @media (max-width: 640px) {
+      .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        font-size: 1.7rem;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 24px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .nav-container {
+        justify-content: space-between;
+      }
+      .brand img {
+        width: 60px;
+        height: 60px;
+      }
+      .about-header h1 {
+        font-size: 2.2rem;
+      }
+      .story-grid {
+        flex-direction: column;
+      }
+      .footer-grid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-col {
+        text-align: center;
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .notify-live-text {
+        font-size: 0.85rem;
+      }
+      .brand img {
+        width: 52px;
+        height: 52px;
+      }
+      .about-header h1 {
+        font-size: 1.8rem;
+      }
+      .mv-card h3 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar - exactly matching index page -->
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="brand">
+      <img src="Images/logo.jpeg" alt="Netify Living Logo" onerror="this.src='https://placehold.co/72x72/0b2b3b/7ccf9c?text=NL'">
+      <span class="notify-live-text">NETIFY LIVE</span>
+    </div>
+    <!-- Desktop nav links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html" style="color: #7ccf9c;">Aboutus</a></li>
+      <li><a href="amenities.html">Amenities</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="#" id="signInBtnNav" class="signin-btn"><i class="fas fa-user-circle"></i> Sign In</a></li>
+    </ul>
+    <!-- Hamburger icon (mobile) -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- Mobile side menu (right side) + overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+<ul class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="aboutus.html" style="color: #7ccf9c;">Aboutus</a></li>
+  <li><a href="amenities.html">Amenities</a></li>
+  <li><a href="experiences.html">Experiences</a></li>
+  <li><a href="#" id="mobileSignInBtn" class="mobile-signin"><i class="fas fa-user-circle"></i> Sign In</a></li>
+</ul>
+
+<main>
+  <!-- About Hero Section -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-header">
+        <h1>Redefining <span>Coliving</span> <br>for Modern India</h1>
+        <p>We're on a mission to transform the PG and hostel experience by creating vibrant, secure, and community-driven living spaces where students and professionals can thrive.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="mission-vision">
+    <div class="container">
+      <div class="mv-grid">
+        <div class="mv-card">
+          <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
+          <h3>Our Mission</h3>
+          <p>To provide premium, hassle-free coliving experiences that combine comfort, community, and convenience, enabling residents to focus on what matters most - their growth and success.</p>
+        </div>
+        <div class="mv-card">
+          <div class="mv-icon"><i class="fas fa-eye"></i></div>
+          <h3>Our Vision</h3>
+          <p>To become India's most trusted and beloved coliving brand, setting new standards in organized living with 500+ properties across 25+ cities by 2030.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-content">
+          <h2>From a Dream to <br>India's Largest Coliving Network</h2>
+          <p>Founded in 2017, Netify Living started with a simple observation: students and working professionals moving to new cities deserved better than cramped, poorly-managed PGs. We envisioned a world where coliving meant more than just a bed - it meant a home, a community, and a launchpad for dreams.</p>
+          <p>Today, we've grown into India's fastest-growing managed accommodation network, serving over 50,000+ residents across 15+ cities. Every Netify Living property is designed to foster connections, ensure safety, and provide the amenities that modern lifestyles demand.</p>
+          <div class="story-stats">
+            <div class="stat"><div class="stat-number">50,000+</div><div class="stat-label">Happy Residents</div></div>
+            <div class="stat"><div class="stat-number">15+</div><div class="stat-label">Cities</div></div>
+            <div class="stat"><div class="stat-number">200+</div><div class="stat-label">Properties</div></div>
+            <div class="stat"><div class="stat-number">98%</div><div class="stat-label">Satisfaction Rate</div></div>
+          </div>
+        </div>
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Netify Living Community">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="values-section">
+    <div class="container">
+      <h2 class="section-title" style="text-align: center;">Our Core Values</h2>
+      <p class="section-sub" style="text-align: center; margin-bottom: 48px;">The principles that guide everything we do</p>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-heart"></i></div>
+          <h4>Community First</h4>
+          <p>We believe in creating spaces where meaningful connections flourish and everyone feels they belong.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+          <h4>Safety Always</h4>
+          <p>24/7 security, CCTV surveillance, and strict verification processes ensure complete peace of mind.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-hand-sparkles"></i></div>
+          <h4>Hassle-Free Living</h4>
+          <p>From housekeeping to maintenance, we handle everything so you can focus on your goals.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-chart-line"></i></div>
+          <h4>Continuous Innovation</h4>
+          <p>Constantly evolving our services and spaces to exceed the expectations of modern residents.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Team -->
+  <section class="team-section">
+    <div class="container">
+      <h2 class="section-title" style="text-align: center;">Meet Our Leadership</h2>
+      <p class="section-sub" style="text-align: center; margin-bottom: 48px;">The visionaries behind Netify Living</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-image">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="CEO">
+          </div>
+          <h4>Anindya Dutta</h4>
+          <p>Co-Founder & CEO</p>
+          <p class="bio">Ex-McKinsey, IIM Ahmedabad alumnus with a vision to revolutionize organized living in India.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-image">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="COO">
+          </div>
+          <h4>Priyanka Sharma</h4>
+          <p>Co-Founder & COO</p>
+          <p class="bio">ISB Hyderabad alumnus, former real estate expert driving operational excellence.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-image">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="CTO">
+          </div>
+          <h4>Rahul Mehta</h4>
+          <p>Chief Technology Officer</p>
+          <p class="bio">Tech visionary building the digital backbone of our coliving ecosystem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer - exactly matching index page with 6 columns -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>About Us</h4><ul><li><a href="ourstory.html">Our Story</a></li><li><a href="careers.html">Careers</a></li><li><a href="press.html">Press</a></li><li><a href="sustainability.html">Sustainability</a></li></ul></div>
+      <div class="footer-col"><h4>Cities</h4><ul><li><a href="bangalore.html">Bangalore</a></li><li><a href="mumbai.html">Mumbai</a></li><li><a href="hyderabad.html">Hyderabad</a></li><li><a href="chennai.html">Chennai</a></li></ul></div>
+      <div class="footer-col"><h4>Explore</h4><ul><li><a href="findpg.html">Find PG</a></li><li><a href="offers.html">Offers</a></li><li><a href="Virtualtour.html">Virtual Tour</a></li><li><a href="rooms.html">Rooms</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="helpcenter.html">Help Center</a></li><li><a href="safetyguide.html">Safety Guide</a></li><li><a href="contactus.html">Contact Us</a></li><li><a href="refundpolicy.html">Refund Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Community</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="stories.html">Stories</a></li><li><a href="events.html">Events</a></li><li><a href="refer.html">Refer & Earn</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="grievance.html">Grievance</a></li><li><a href="rera.html">RERA</a></li></ul></div>
+    </div>
+    
+    <div class="social-icons">
+      <a href="http://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="http://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="http://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="http://www.twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    
+    <div class="footer-bottom">
+      <span>© 2025 Netify Living — Premium Coliving Spaces. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Sign In Modal -->
+<div id="signinModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-key"></i> Sign In</h3>
+    <input type="email" id="loginEmail" placeholder="Email address" autocomplete="email">
+    <div id="emailError" class="error-msg"></div>
+    <input type="password" id="loginPassword" placeholder="Password (min 6 chars)">
+    <div id="passError" class="error-msg"></div>
+    <button id="submitSignIn">Sign In</button>
+    <button class="close-modal" id="closeModalBtn">Cancel</button>
+  </div>
+</div>
+
+<!-- FLOATING WHATSAPP ICON - right side bottom, same as index page -->
+<a href="https://wa.me/919876543210?text=Hello%20Netify%20Living%2C%20I'm%20interested%20in%20your%20premium%20PG%20spaces!" 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Chat with us on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+  // Mobile Menu Functionality
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  
+  function openMenu() { 
+    mobileMenu.classList.add('active'); 
+    overlay.classList.add('active'); 
+    document.body.style.overflow = 'hidden'; 
+  }
+  
+  function closeMenu() { 
+    mobileMenu.classList.remove('active'); 
+    overlay.classList.remove('active'); 
+    document.body.style.overflow = ''; 
+  }
+  
+  hamburger.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  
+  const mobileLinks = document.querySelectorAll('.mobile-menu a');
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  // Sign In Modal Logic
+  const modal = document.getElementById('signinModal');
+  const signInBtns = document.querySelectorAll('#signInBtnNav, #mobileSignInBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const submitBtn = document.getElementById('submitSignIn');
+  const emailInput = document.getElementById('loginEmail');
+  const passwordInput = document.getElementById('loginPassword');
+  const emailError = document.getElementById('emailError');
+  const passError = document.getElementById('passError');
+
+  function openModalFunc(e) { 
+    e.preventDefault(); 
+    modal.style.display = 'flex'; 
+  }
+  
+  function closeModalFunc() { 
+    modal.style.display = 'none'; 
+    emailError.innerText = ''; 
+    passError.innerText = ''; 
+    emailInput.value = ''; 
+    passwordInput.value = ''; 
+  }
+  
+  signInBtns.forEach(btn => btn.addEventListener('click', openModalFunc));
+  closeModalBtn.addEventListener('click', closeModalFunc);
+  window.addEventListener('click', (e) => { if(e.target === modal) closeModalFunc(); });
+  
+  function validateEmail(email) { 
+    const re = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/; 
+    return re.test(email); 
+  }
+  
+  submitBtn.addEventListener('click', () => {
+    let isValid = true;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    emailError.innerText = '';
+    passError.innerText = '';
+    
+    if(!email) { 
+      emailError.innerText = 'Email is required'; 
+      isValid = false; 
+    } else if(!validateEmail(email)) { 
+      emailError.innerText = 'Enter a valid email (e.g., name@example.com)'; 
+      isValid = false; 
+    }
+    
+    if(!password) { 
+      passError.innerText = 'Password is required'; 
+      isValid = false; 
+    } else if(password.length < 6) { 
+      passError.innerText = 'Password must be at least 6 characters'; 
+      isValid = false; 
+    }
+    
+    if(isValid) { 
+      alert(`✅ Welcome back! (Demo sign-in successful for ${email})`); 
+      closeModalFunc(); 
+    }
+  });
+</script>
+</body>
+</html>

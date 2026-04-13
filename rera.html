@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Netify Living | RERA Registered PG & Hostel Spaces</title>
+  <!-- Google Fonts + Inter font family -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefefe;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar and footer background (dark blue-teal, consistent with index) */
+    .navbar, .footer {
+      background: #0b2b3b;
+    }
+    .footer {
+      background: #0a1c2a;
+    }
+
+    /* Brand container: bigger logo + NOTIFY LIVE text */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .brand img { 
+      width: 72px;
+      height: 72px;
+      object-fit: cover; 
+      border-radius: 14px;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: #fff;
+      transition: transform 0.2s ease;
+    }
+    .brand img:hover {
+      transform: scale(1.02);
+    }
+
+    .notify-live-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7ccf9c 0%, #2b7a4b 60%, #3f9c66 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+      padding-left: 6px;
+      border-left: 2.5px solid #7ccf9c;
+      margin-left: 4px;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .notify-live-text i {
+      font-size: 0.9rem;
+      color: #7ccf9c;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #7ccf9c;
+      margin-right: 5px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      gap: 20px;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #eef2f5;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #7ccf9c;
+    }
+
+    .signin-btn {
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c !important;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .signin-btn:hover {
+      background: #2b7a4b;
+      border-color: #2b7a4b;
+      color: white !important;
+    }
+
+    /* Hamburger icon - hidden on desktop */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #eef2f5;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: 0.2s;
+      z-index: 200;
+    }
+    .hamburger:hover {
+      color: #7ccf9c;
+    }
+
+    /* Mobile menu overlay (right side) */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #0a1c2a;
+      z-index: 1000;
+      box-shadow: -8px 0 25px rgba(0,0,0,0.3);
+      transition: right 0.3s ease-in-out;
+      padding: 85px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      list-style: none;
+    }
+    .mobile-menu.active {
+      right: 0;
+    }
+    .mobile-menu li {
+      list-style: none;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #eef2f5;
+      display: block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(124,207,156,0.2);
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover {
+      color: #7ccf9c;
+      padding-left: 8px;
+    }
+    .mobile-signin {
+      margin-top: 20px;
+      background: transparent;
+      border: 1.5px solid #7ccf9c;
+      color: #7ccf9c;
+      text-align: center;
+      border-radius: 40px;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .mobile-signin:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .close-menu {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #eef2f5;
+      cursor: pointer;
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    .menu-overlay.active {
+      display: block;
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      z-index: 1050;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      animation: pulse-glow 1.8s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20b859;
+      box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
+    }
+    @keyframes pulse-glow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+      }
+      70% {
+        box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    /* RERA Hero Section */
+    .rera-hero {
+      background: linear-gradient(135deg, #f0f7f3 0%, #ffffff 100%);
+      padding: 60px 0 40px;
+      border-bottom: 1px solid #e0ede6;
+    }
+    .hero-badge {
+      background: #e9f4ef;
+      color: #1f5e3a;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .rera-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #1a2c3e;
+      margin-bottom: 16px;
+    }
+    .rera-hero p {
+      font-size: 1.1rem;
+      color: #4a5b6b;
+      max-width: 750px;
+    }
+
+    /* RERA Certificate Section */
+    .certificate-section {
+      padding: 50px 0 40px;
+      background: #ffffff;
+    }
+    .certificate-card {
+      background: linear-gradient(145deg, #ffffff, #fafefb);
+      border-radius: 32px;
+      padding: 32px 36px;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+      border: 1px solid #e2f0e8;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .certificate-icon {
+      background: #2b7a4b15;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      color: #2b7a4b;
+      flex-shrink: 0;
+    }
+    .certificate-details {
+      flex: 1;
+    }
+    .certificate-details h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1f5e3a;
+      margin-bottom: 8px;
+    }
+    .certificate-details .rera-number {
+      font-family: monospace;
+      background: #f1f5f9;
+      padding: 8px 16px;
+      border-radius: 40px;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      margin: 12px 0;
+      color: #1a2c3e;
+    }
+    .verify-btn {
+      background: #2b7a4b;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      transition: 0.2s;
+    }
+    .verify-btn:hover {
+      background: #1f5e3a;
+      transform: translateY(-2px);
+    }
+
+    /* Properties Grid - RERA Registered PG/Hostels */
+    .properties-section {
+      padding: 40px 0 60px;
+      background: #f9fafc;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      text-align: center;
+      color: #5d6f7f;
+      max-width: 650px;
+      margin: 0 auto 48px auto;
+    }
+    .properties-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+    .property-rera-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s;
+      flex: 1;
+      min-width: 280px;
+      max-width: 350px;
+      border: 1px solid #edf2f7;
+    }
+    .property-rera-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 36px -12px rgba(0, 0, 0, 0.12);
+    }
+    .card-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .rera-badge-ribbon {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #2b7a4b;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .card-content {
+      padding: 24px 20px 28px;
+    }
+    .card-content h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .rera-id {
+      font-family: monospace;
+      background: #f1f5f9;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      display: inline-block;
+      margin: 8px 0;
+      color: #2b7a4b;
+      font-weight: 600;
+    }
+    .location {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #5d6f7f;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+    .compliance-list {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .compliance-list span {
+      background: #eef6f2;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      color: #1f5e3a;
+    }
+
+    /* RERA Rights & Obligations Section */
+    .rights-section {
+      background: #ffffff;
+      padding: 60px 0;
+      border-top: 1px solid #edf2f7;
+    }
+    .rights-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+    .right-card {
+      background: #fbfefc;
+      border-radius: 24px;
+      padding: 28px;
+      flex: 1;
+      min-width: 260px;
+      border-left: 4px solid #2b7a4b;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+    .right-card i {
+      font-size: 2rem;
+      color: #2b7a4b;
+      margin-bottom: 16px;
+    }
+    .right-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    .right-card p {
+      font-size: 0.9rem;
+      color: #4a5b6b;
+    }
+
+    /* Download Section */
+    .download-section {
+      background: #eef6f2;
+      padding: 50px 0;
+      text-align: center;
+    }
+    .download-card {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 32px;
+      padding: 40px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+    }
+    .download-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    .download-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .download-btn {
+      background: #0a1c2a;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+    }
+    .download-btn:hover {
+      background: #2b7a4b;
+      transform: translateY(-2px);
+    }
+
+    /* Footer same as index */
+    .footer {
+      background: #0a1c2a;
+      color: #adb7c2;
+      padding: 48px 0 24px;
+      margin-top: 0;
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .footer-col {
+      flex: 1;
+      min-width: 140px;
+    }
+    .footer-col h4 {
+      color: #eef2f5;
+      font-weight: 600;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+    .footer-col a {
+      text-decoration: none;
+      color: #b9c4ce;
+      transition: color 0.2s;
+      font-size: 0.85rem;
+    }
+    .footer-col a:hover {
+      color: #7ccf9c;
+    }
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 30px 0 20px;
+    }
+    .social-icons a {
+      background: #1f2e38;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #cddfe7;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+    .social-icons a:hover {
+      background: #2b7a4b;
+      color: white;
+    }
+    .footer-bottom {
+      border-top: 1px solid #1f2e38;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    /* Modal for Sign In */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      max-width: 400px;
+      width: 90%;
+      padding: 32px;
+      border-radius: 32px;
+      text-align: center;
+    }
+    .modal-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #1f5e3a;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border: 1px solid #ddd;
+      border-radius: 60px;
+    }
+    .modal-content button {
+      background: #2b7a4b;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 60px;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+    .close-modal {
+      margin-top: 16px;
+      background: transparent;
+      color: #777;
+    }
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.75rem;
+      margin-top: -8px;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 24px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .rera-hero h1 {
+        font-size: 2rem;
+      }
+      .certificate-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px;
+      }
+      .certificate-details {
+        text-align: center;
+      }
+      .brand img {
+        width: 60px;
+        height: 60px;
+      }
+      .notify-live-text {
+        font-size: 1rem;
+      }
+      .footer-grid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-col {
+        text-align: center;
+      }
+      .properties-grid {
+        justify-content: center;
+      }
+      .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        font-size: 1.7rem;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+    @media (max-width: 480px) {
+      .rera-hero h1 {
+        font-size: 1.7rem;
+      }
+      .download-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar: exactly same as index with sign in modal -->
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="brand">
+      <img src="Images/logo.jpeg" alt="Netify Living Logo" onerror="this.src='https://placehold.co/72x72/0b2b3b/7ccf9c?text=NL'">
+      <span class="notify-live-text">NETIFY LIVE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">Aboutus</a></li>
+      <li><a href="amenities.html">Amenities</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
+      <li><a href="#" id="signInBtnNav" class="signin-btn"><i class="fas fa-user-circle"></i> Sign In</a></li>
+    </ul>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<ul class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="aboutus.html">Aboutus</a></li>
+  <li><a href="amenities.html">Amenities</a></li>
+  <li><a href="experiences.html">Experiences</a></li>
+  <li><a href="#" id="mobileSignInBtn" class="mobile-signin"><i class="fas fa-user-circle"></i> Sign In</a></li>
+</ul>
+
+<main>
+  <!-- RERA Hero Section -->
+  <section class="rera-hero">
+    <div class="container">
+      <span class="hero-badge"><i class="fas fa-gavel"></i> RERA Registered & Compliant</span>
+      <h1>Your Trusted PG & Hostel<br>RERA Certified Living Spaces</h1>
+      <p>Netify Living is fully compliant with the Real Estate (Regulation and Development) Act, ensuring transparency, accountability, and resident protection across all our coliving and PG properties.</p>
+    </div>
+  </section>
+
+  <!-- RERA Certificate Display -->
+  <section class="certificate-section">
+    <div class="container">
+      <div class="certificate-card">
+        <div class="certificate-icon">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <div class="certificate-details">
+          <h2>RERA Registration Certificate</h2>
+          <p>Netify Living operates under RERA guidelines for all PG and hostel accommodations. Our projects are registered with respective state RERA authorities ensuring legal compliance, standardized agreements, and timely grievance redressal.</p>
+          <div class="rera-number">
+            <i class="fas fa-qrcode"></i> RERA Reg. No: PRM/KA/RERA/2025/0789NL (Bangalore)
+          </div>
+          <div class="rera-number" style="background:#e9f4ef;">
+            <i class="fas fa-building"></i> MahaRERA Reg. No: P51800012345 (Mumbai)
+          </div>
+          <button class="verify-btn" id="verifyReraBtn"><i class="fas fa-check-circle"></i> Verify RERA Status</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RERA Registered PG Properties Grid -->
+  <section class="properties-section">
+    <div class="container">
+      <h2 class="section-title">🏢 RERA Registered PG & Hostels</h2>
+      <p class="section-sub">Every Netify property is RERA compliant — ensuring safe, legal, and transparent living for students and working professionals.</p>
+      <div class="properties-grid">
+        <div class="property-rera-card">
+          <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+            <div class="rera-badge-ribbon"><i class="fas fa-stamp"></i> RERA Registered</div>
+          </div>
+          <div class="card-content">
+            <h3>Netify Elite Koramangala</h3>
+            <div class="location"><i class="fas fa-map-pin"></i> Koramangala, Bangalore</div>
+            <div class="rera-id"><i class="fas fa-id-card"></i> RERA: PRM/KA/RERA/2025/0789NL-01</div>
+            <div class="compliance-list">
+              <span><i class="fas fa-file-contract"></i> Registered Agreement</span>
+              <span><i class="fas fa-shield-alt"></i> Title Clearance</span>
+              <span><i class="fas fa-chart-line"></i> Escrow Account</span>
+            </div>
+          </div>
+        </div>
+        <div class="property-rera-card">
+          <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1556912173-3bb406ef7e77?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+            <div class="rera-badge-ribbon"><i class="fas fa-stamp"></i> RERA Registered</div>
+          </div>
+          <div class="card-content">
+            <h3>Netify Hub Indiranagar</h3>
+            <div class="location"><i class="fas fa-map-pin"></i> Indiranagar, Bangalore</div>
+            <div class="rera-id"><i class="fas fa-id-card"></i> RERA: PRM/KA/RERA/2025/0789NL-02</div>
+            <div class="compliance-list">
+              <span><i class="fas fa-file-contract"></i> Model Lease Deed</span>
+              <span><i class="fas fa-clock"></i> Timely Possession</span>
+              <span><i class="fas fa-hand-holding-usd"></i> Deposit Protection</span>
+            </div>
+          </div>
+        </div>
+        <div class="property-rera-card">
+          <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+            <div class="rera-badge-ribbon"><i class="fas fa-stamp"></i> RERA Registered</div>
+          </div>
+          <div class="card-content">
+            <h3>Netify Andheri West hostels</h3>
+            <div class="location"><i class="fas fa-map-pin"></i> Andheri West, Mumbai</div>
+            <div class="rera-id"><i class="fas fa-id-card"></i> MahaRERA: P51800012345-AND01</div>
+            <div class="compliance-list">
+              <span><i class="fas fa-balance-scale"></i> RERA Compliant</span>
+              <span><i class="fas fa-fire-extinguisher"></i> Safety Certified card</span>
+              <span><i class="fas fa-water"></i> Civic Utilities</span>
+            </div>
+          </div>
+        </div>
+        <div class="property-rera-card">
+          <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');">
+            <div class="rera-badge-ribbon"><i class="fas fa-stamp"></i> RERA Registered</div>
+          </div>
+          <div class="card-content">
+            <h3>Netify Gachibowli hostels</h3>
+            <div class="location"><i class="fas fa-map-pin"></i> Gachibowli, Hyderabad</div>
+            <div class="rera-id"><i class="fas fa-id-card"></i> TG-RERA/2025/0567/NL-HYD</div>
+            <div class="compliance-list">
+              <span><i class="fas fa-file-signature"></i> Registered Agreement</span>
+              <span><i class="fas fa-charging-station"></i> Power Backup</span>
+              <span><i class="fas fa-cctv"></i> Security Protocol</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RERA Rights & Obligations Section (PG/Hostel Context) -->
+  <section class="rights-section">
+    <div class="container">
+      <h2 class="section-title">📜 Your Rights Under RERA (PG Residents)</h2>
+      <p class="section-sub">As a resident in a RERA-registered PG or hostel, you are entitled to transparency, timely possession, and quality living standards.</p>
+      <div class="rights-grid">
+        <div class="right-card">
+          <i class="fas fa-file-invoice"></i>
+          <h3>Standardized Rental Agreement</h3>
+          <p>RERA mandates registered model agreements with clear terms on deposit, rent, maintenance, and notice period for all PG accommodations.</p>
+        </div>
+        <div class="right-card">
+          <i class="fas fa-clock"></i>
+          <h3>Timely Possession & Services</h3>
+          <p>Delayed move-in? RERA protects your rights. All Netify properties adhere to committed possession dates and service timelines.</p>
+        </div>
+        <div class="right-card">
+          <i class="fas fa-bug"></i>
+          <h3>Defect Liability & Maintenance</h3>
+          <p>Structural defects or amenity issues must be rectified within 30 days. RERA ensures prompt maintenance response in our hostels.</p>
+        </div>
+        <div class="right-card">
+          <i class="fas fa-gavel"></i>
+          <h3>Grievance Redressal Forum</h3>
+          <p>RERA provides an appellate authority. Residents can escalate unresolved PG/hostel complaints to the Real Estate Regulatory Authority.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download RERA Documents Section -->
+  <section class="download-section">
+    <div class="container">
+      <div class="download-card">
+        <i class="fas fa-file-pdf" style="font-size: 3rem; color: #2b7a4b;"></i>
+        <h3>RERA Compliance Documents</h3>
+        <p>Access registration certificates, project details, and sanctioned plans for all Netify PG properties.</p>
+        <div class="download-buttons">
+          <a href="#" class="download-btn" id="downloadReraCert"><i class="fas fa-download"></i> RERA Certificate (PDF)</a>
+          <a href="#" class="download-btn" id="downloadAgreement"><i class="fas fa-file-contract"></i> Model Lease Deed</a>
+        </div>
+        <p style="margin-top: 24px; font-size: 0.8rem; color: #5d6f7f;"><i class="fas fa-shield-alt"></i> All documents are digitally verified & available for inspection at our PG properties.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER: 6 columns, same as index with RERA link highlighted -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>About Us</h4><ul><li><a href="ourstory.html">Our Story</a></li><li><a href="careers.html">Careers</a></li><li><a href="press.html">Press</a></li><li><a href="sustainability.html">Sustainability</a></li></ul></div>
+      <div class="footer-col"><h4>Cities</h4><ul><li><a href="bangalore.html">Bangalore</a></li><li><a href="mumbai.html">Mumbai</a></li><li><a href="hyderabad.html">Hyderabad</a></li><li><a href="chennai.html">Chennai</a></li></ul></div>
+      <div class="footer-col"><h4>Explore</h4><ul><li><a href="findpg.html">Find PG</a></li><li><a href="offers.html">Offers</a></li><li><a href="Virtualtour.html">Virtual Tour</a></li><li><a href="rooms.html">Rooms</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="helpcenter.html">Help Center</a></li><li><a href="safetyguide.html">Safety Guide</a></li><li><a href="contactus.html">Contact Us</a></li><li><a href="grievance.html">Grievance</a></li></ul></div>
+      <div class="footer-col"><h4>Community</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="stories.html">Stories</a></li><li><a href="events.html">Events</a></li><li><a href="refer.html">Refer & Earn</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="terms.html">Terms of Use</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="grievance.html">Grievance Officer</a></li><li><a href="rera.html" style="color:#7ccf9c; font-weight:600;">RERA Registration</a></li></ul></div>
+    </div>
+    <div class="social-icons">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Netify Living — RERA Registered PG & Coliving Spaces. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Icon (same as index page) -->
+<a href="https://wa.me/919876543210?text=Hello%20Netify%20Living%2C%20I'm%20interested%20in%20your%20RERA%20registered%20PG%20spaces!" 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Chat with us on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Sign In Modal (same as index) -->
+<div id="signinModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-key"></i> Sign In</h3>
+    <input type="email" id="loginEmail" placeholder="Email address">
+    <div id="modalEmailError" class="error-msg"></div>
+    <input type="password" id="loginPassword" placeholder="Password (min 6 chars)">
+    <div id="modalPassError" class="error-msg"></div>
+    <button id="submitSignIn">Sign In</button>
+    <button class="close-modal" id="closeModalBtn">Cancel</button>
+  </div>
+</div>
+
+<script>
+  // Hamburger Menu functionality
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  function openMenu() { mobileMenu.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { mobileMenu.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', closeMenu));
+
+  // Sign In Modal Logic
+  const modal = document.getElementById('signinModal');
+  const signInBtns = document.querySelectorAll('#signInBtnNav, #mobileSignInBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const submitSignIn = document.getElementById('submitSignIn');
+  const loginEmail = document.getElementById('loginEmail');
+  const loginPassword = document.getElementById('loginPassword');
+  const modalEmailError = document.getElementById('modalEmailError');
+  const modalPassError = document.getElementById('modalPassError');
+  function openModal(e) { e.preventDefault(); modal.style.display = 'flex'; }
+  function closeModalFunc() { modal.style.display = 'none'; modalEmailError.innerText = ''; modalPassError.innerText = ''; loginEmail.value = ''; loginPassword.value = ''; }
+  signInBtns.forEach(btn => btn.addEventListener('click', openModal));
+  closeModalBtn.addEventListener('click', closeModalFunc);
+  window.addEventListener('click', (e) => { if(e.target === modal) closeModalFunc(); });
+  function validateEmail(email) { return /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/.test(email); }
+  submitSignIn.addEventListener('click', () => {
+    let valid = true;
+    const email = loginEmail.value.trim();
+    const pwd = loginPassword.value.trim();
+    modalEmailError.innerText = ''; modalPassError.innerText = '';
+    if(!email) { modalEmailError.innerText = 'Email required'; valid = false; }
+    else if(!validateEmail(email)) { modalEmailError.innerText = 'Valid email required'; valid = false; }
+    if(!pwd) { modalPassError.innerText = 'Password required'; valid = false; }
+    else if(pwd.length < 6) { modalPassError.innerText = 'Min 6 characters'; valid = false; }
+    if(valid) { alert(`✅ Welcome back to Netify Living RERA Compliant PG!`); closeModalFunc(); }
+  });
+
+  // RERA Interactive Alerts
+  const verifyBtn = document.getElementById('verifyReraBtn');
+  if(verifyBtn) {
+    verifyBtn.addEventListener('click', () => {
+      alert("🔍 RERA Verification: Netify Living's registration is active & compliant. You can verify on the official Karnataka RERA website using registration no: PRM/KA/RERA/2025/0789NL");
+    });
+  }
+  const downloadCert = document.getElementById('downloadReraCert');
+  const downloadAgree = document.getElementById('downloadAgreement');
+  if(downloadCert) {
+    downloadCert.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("📄 RERA Certificate: Netify Living RERA Registration Certificate will be downloaded. (Demo: All PG properties are RERA registered as per state norms.)");
+    });
+  }
+  if(downloadAgree) {
+    downloadAgree.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("📑 Model Lease Deed: RERA compliant rental agreement for PG residents. Includes deposit protection, notice period, and maintenance clauses.");
+    });
+  }
+</script>
+</body>
+</html>
